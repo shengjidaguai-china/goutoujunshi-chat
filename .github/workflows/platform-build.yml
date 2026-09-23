@@ -15,8 +15,6 @@ on:
 jobs:
   android:
     runs-on: ubuntu-latest
-    env:
-      ANDROID_HOME: /usr/local/lib/android/sdk
     defaults:
       run:
         working-directory: integrations/jev_android
@@ -26,9 +24,8 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-      - run: >-
-          "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager"
-          "platforms;android-35" "build-tools;35.0.0"
+      - uses: android-actions/setup-android@v4
+      - run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
       - run: ./gradlew :app:assembleDebug --no-daemon
 
   windows:
