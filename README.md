@@ -71,24 +71,3 @@ uv pip install --python .venv/bin/python -r requirements.txt
 *图：接口配置页的离线预览。DeepSeek 与 Jev 分别保存 Key；已有值不会回显，图片里没有真实密钥。*
 
 模型、OCR、钥匙串、可选环境变量、K 线 CSV 格式和操作限制见 [Mac 使用说明](integrations/jev_mac/README.md)。
-
-## Android 与 Windows 源码适配
-
-| 平台 | 当前状态 | 读屏与悬浮窗 | 已接入的狗头军师能力 |
-| --- | --- | --- | --- |
-| macOS | 源码实验版，已在 Mac 上运行 | Apple Vision／可选 DeepSeek 识图、macOS 悬浮窗 | 核对原文、意图与依据、行动／停止条件、关系档案、CSV 关系 K 线 |
-| Android | 源码集成，待真机验收 | 上游 Jev 的无障碍、ML Kit 离线 OCR、系统悬浮窗 | 先判断再起草、自然口吻、原文依据、未知、下一步、停止条件、明确拒绝时不生成回复 |
-| Windows | 源码集成，待 Windows 实机验收 | 上游 Jev 的 WGC 窗口采集、RapidOCR、置顶窗口 | 先判断再起草、自然口吻、原文依据、未知、下一步、停止条件、明确拒绝时不生成回复 |
-
-Android 和 Windows 的说明分别见 [Android 源码说明](integrations/jev_android/README.md) 和 [Windows 源码说明](integrations/jev_windows/README.md)。两端暂未移植 Mac 的手动核对页、关系 K 线和完整关系档案界面；请勿把这些源码当成已发布、已实测的安装包。
-
-## 验证与状态
-
-```bash
-python3 -B scripts/validate_skill.py
-python3 -B -m unittest discover -s tests -q
-```
-
-当前发布的是**源码实验版**，没有签名和公证的 `.app`，也没有经过真机验收的 Android／Windows 正式安装包。平台构建成功后，GitHub Actions 会提供 Android 调试 APK 和 Windows 预览包供测试。不同聊天应用版本的控件与布局需要逐机核对；输入控件不可验证时仍可复制、手动粘贴。云端识图和分析会把对应内容发送到所选模型服务。
-
-本项目包含狗头军师的行为规则与按需知识文件。狗头军师主体采用 [MIT 许可](LICENSE)；Mac 窗口模块改编自 [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac)，其 MIT 许可见 [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE)。Android 源码来自 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis)，Windows 源码来自 [Jev Windows](https://github.com/jev-chat/jev-chat-windows)，各自的 LICENSE 和 NOTICE 保留在对应目录。Windows 所用 PySide6-Fluent-Widgets 的发布许可另见 [Windows NOTICE](integrations/jev_windows/NOTICE)。
