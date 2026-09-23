@@ -26,13 +26,13 @@ If it helps you, [Star the project](https://github.com/shengjidaguai-china/gouto
 
 ![The relationship candlestick window with example patterns and a chat CSV import option](documentation/screenshots/kline-window.png)
 
-*Open this window with the overlay's “K-line” button. You can explore five example patterns or import a chat CSV with `timestamp,sender,message` columns. Imported records produce daily open, high, low, and close values for the running message-direction balance; first verify that `sender` is `me` or `other`. A visible WeChat screen does not provide a complete history for a long-term chart.*
+*Click “K-line” at the top of the overlay to open the relationship trends window. The menu offers five patterns, and you can import a chat CSV to explore how the chart changes over time.*
 
 ### Five illustrative patterns
 
 ![Five relationship candlestick examples](documentation/screenshots/five-kline-patterns.png)
 
-*Five relationship patterns: mutual warming, cooling after intense chat, repair after conflict, a busy but reliable partner, and drawing a line after a clear boundary. The 0–100 index was assigned by hand from each example's events to illustrate how to read them alongside a chart; it is not a relationship success rate. The bottom-right note saying the Mac overlay has no candlestick feature is from an earlier illustration; the current app has the window shown above.*
+*Five relationship patterns: mutual warming, cooling after intense chat, repair after conflict, a busy but reliable partner, and drawing a line after a clear boundary. Follow the changes along the timeline, then compare each turning point with the chat event behind it.*
 
 ## One round of use
 
