@@ -14,7 +14,7 @@ hiddenimports = [
     "core.engine", "core.draft", "core.jev_client", "core.questions", "core.providers",
     "core.llm",
 ]
-datas, binaries = [], []
+datas, binaries = [("LICENSE", "."), ("NOTICE", ".")], []
 for pkg in (
     "rapidocr_onnxruntime",  # .onnx 模型 + config.yaml 是包数据，不收就是启动即炸
     "onnxruntime",           # capi 下面那堆 DLL

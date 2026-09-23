@@ -69,6 +69,10 @@ def analyze(messages: list, relationship: str, model: str | None = None,
                                   base_url=base_url, timeout=timeout, keep=context,
                                   reply_to=reply_to, style=style, thinking=thinking,
                                   guidance=guidance_text(answers) if judged else None)
+    if not candidates:
+        return {"candidates": [], "best_index": None, "best_reply": None,
+                "scores": [], "answers": answers, "usage": usage,
+                "reply_to": reply_to, "goutou": brief(messages, answers)}
 
     questions = {} if judged else dict(JUDGE_QUESTIONS)
     if len(candidates) >= 2:  # 起草只给了 1 条就没什么可排的，判断题照问
