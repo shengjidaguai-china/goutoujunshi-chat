@@ -44,8 +44,8 @@ def analyze(messages: list, relationship: str, model: str | None = None,
     scores 是每条候选的胜出概率（0~1），取自 best_reply.probabilities，取不到记 0.0。
     只有对方最新说话时才有意义调它——是不是该触发由调用方判断（看 latest_from）。
 
-    三段式（issue #4）：先让 Jev 答 7 道判断题，把判断当小抄喂给起草，最后 Jev 只排序。
-    判断那次挂了就退回老路：盲起草 + 判断和排序一次问完，行为跟以前一样。usage 是两次之和。
+    三段式：先让 Jev 答 7 道判断题，把判断当小抄喂给起草，最后 Jev 只排序。
+    首次判断失败时停止，不在缺少策略依据的情况下盲起草。usage 是两次之和。
     """
     state = build_state(messages, relationship, keep=context, reply_to=reply_to)
     if explicit_boundary(messages):
@@ -56,14 +56,11 @@ def analyze(messages: list, relationship: str, model: str | None = None,
     usage: dict = {}
     answers: dict = {}
     judged = False
-    try:
-        first = ask(state, dict(JUDGE_QUESTIONS), timeout=timeout,
-                    provider=jev_provider, model=jev_model)
-        answers = first.get("answers") or {}
-        _add_usage(usage, first.get("usage"))
-        judged = True
-    except JevError:
-        pass  # 退回盲起草 + 老的一次合问；错误不打日志（里面可能带请求内容）
+    first = ask(state, dict(JUDGE_QUESTIONS), timeout=timeout,
+                provider=jev_provider, model=jev_model)
+    answers = first.get("answers") or {}
+    _add_usage(usage, first.get("usage"))
+    judged = True
 
     candidates = draft_candidates(messages, relationship, provider=provider, model=model,
                                   base_url=base_url, timeout=timeout, keep=context,

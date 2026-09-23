@@ -72,7 +72,7 @@ class Prefs(context: Context, prefsName: String = PREFS_MAIN) {
         get() = sp.getString(K_REPLY_BASE, DEFAULT_REPLY_BASE) ?: DEFAULT_REPLY_BASE
         set(v) = sp.edit().putString(K_REPLY_BASE, v.trim()).apply()
 
-    /** Blank = fall back to [judgeKey]. */
+    /** Blank may reuse the judge key only for the same API origin. */
     var replyKey: String
         get() = sp.getString(K_REPLY_KEY, "") ?: ""
         set(v) = sp.edit().putString(K_REPLY_KEY, v.trim()).apply()
@@ -93,7 +93,7 @@ class Prefs(context: Context, prefsName: String = PREFS_MAIN) {
         get() = sp.getString(K_VISION_BASE, DEFAULT_VISION_BASE) ?: DEFAULT_VISION_BASE
         set(v) = sp.edit().putString(K_VISION_BASE, v.trim()).apply()
 
-    /** Blank = fall back to [replyKey] then [judgeKey]. */
+    /** Blank may reuse another route's key only for the same API origin. */
     var visionKey: String
         get() = sp.getString(K_VISION_KEY, "") ?: ""
         set(v) = sp.edit().putString(K_VISION_KEY, v.trim()).apply()
@@ -154,7 +154,7 @@ class Prefs(context: Context, prefsName: String = PREFS_MAIN) {
 
     /** Master on/off for showing the overlay + running analysis. */
     var enabled: Boolean
-        get() = sp.getBoolean(K_ENABLED, true)
+        get() = sp.getBoolean(K_ENABLED, false)
         set(v) = sp.edit().putBoolean(K_ENABLED, v).apply()
 
     /**
@@ -182,16 +182,17 @@ class Prefs(context: Context, prefsName: String = PREFS_MAIN) {
 
     /** Auto-analyze on every incoming message; if false, user taps to analyze. */
     var autoAnalyze: Boolean
-        get() = sp.getBoolean(K_AUTO, true)
+        get() = sp.getBoolean(K_AUTO, false)
         set(v) = sp.edit().putBoolean(K_AUTO, v).apply()
 
     // ------------------------------------------------------------- helpers
 
-    /** Reply route key, falling back to the judge key. */
-    fun effectiveReplyKey(): String = replyKey.ifBlank { judgeKey }
+    /** Never send a TypeSafe/OpenRouter key to a different reply host. */
+    fun effectiveReplyKey(): String = RouteKeys.reply(replyKey, judgeKey, replyEndpoint(), judgeEndpoint())
 
-    /** Vision route key, falling back to reply then judge. */
-    fun effectiveVisionKey(): String = visionKey.ifBlank { effectiveReplyKey() }
+    /** Never send a reply or judge key to a different vision host. */
+    fun effectiveVisionKey(): String = RouteKeys.vision(visionKey, replyKey, judgeKey,
+        visionEndpoint(), replyEndpoint(), judgeEndpoint())
 
     /** Full POST URL for the Jev decisions call, per provider. */
     fun judgeEndpoint(): String {

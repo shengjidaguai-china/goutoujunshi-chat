@@ -1,15 +1,24 @@
-name: Android and Windows source builds
+name: Platform preview packages
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - "integrations/jev_android/**"
       - "integrations/jev_windows/**"
+      - "integrations/jev_mac/**"
+      - "scripts/package_mac.py"
+      - "PRIVACY.md"
+      - "tests/test_platform_integrations.py"
       - ".github/workflows/platform-build.yml"
   pull_request:
     paths:
       - "integrations/jev_android/**"
       - "integrations/jev_windows/**"
+      - "integrations/jev_mac/**"
+      - "scripts/package_mac.py"
+      - "PRIVACY.md"
+      - "tests/test_platform_integrations.py"
       - ".github/workflows/platform-build.yml"
 
 jobs:
@@ -26,7 +35,7 @@ jobs:
           java-version: "17"
       - uses: android-actions/setup-android@v4
       - run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
-      - run: ./gradlew :app:assembleDebug --no-daemon
+      - run: ./gradlew :app:testDebugUnitTest :app:assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
         with:
           name: goutoujunshi-chat-android-debug
@@ -46,7 +55,29 @@ jobs:
       - run: python -m compileall -q app core main.py
       - run: python -m core.draft
       - run: pyinstaller --noconfirm --clean jev.spec
+      - name: Create Windows ZIP
+        shell: pwsh
+        run: |
+          Copy-Item README.md dist/goutoujunshi-chat-windows/README.md
+          Copy-Item LICENSE dist/goutoujunshi-chat-windows/LICENSE
+          Copy-Item NOTICE dist/goutoujunshi-chat-windows/NOTICE
+          Compress-Archive -Path dist/goutoujunshi-chat-windows -DestinationPath dist/goutoujunshi-chat-windows-preview.zip -Force
       - uses: actions/upload-artifact@v4
         with:
           name: goutoujunshi-chat-windows-preview
-          path: integrations/jev_windows/dist/goutoujunshi-chat-windows/
+          path: integrations/jev_windows/dist/goutoujunshi-chat-windows-preview.zip
+
+  mac:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -B scripts/validate_skill.py
+      - run: python -B -m unittest discover -s tests -v
+      - run: python -B scripts/package_mac.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: goutoujunshi-chat-mac-source
+          path: dist/goutoujunshi-chat-mac.zip

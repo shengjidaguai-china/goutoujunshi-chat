@@ -72,15 +72,15 @@ uv pip install --python .venv/bin/python -r requirements.txt
 
 For models, OCR choices, Keychain and environment configuration, CSV format, and operating limits, see the [Mac usage guide](integrations/jev_mac/README.md) (Chinese).
 
-## Android and Windows source integrations
+## Preview packages for three platforms
 
 | Platform | Status | Capture and overlay | Goutoujunshi behavior included |
 | --- | --- | --- | --- |
-| macOS | Experimental source version, run on Mac | Apple Vision or optional DeepSeek image recognition; macOS overlay | Transcript review, intent and evidence, action and stop conditions, relationship profiles, CSV candlesticks |
-| Android | Source integrated; device validation pending | Upstream Jev Accessibility capture, offline ML Kit OCR, system overlay | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
-| Windows | Source integrated; Windows validation pending | Upstream Jev WGC capture, RapidOCR, floating window | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
+| macOS | Run on Mac; source ZIP with dependency setup | Apple Vision or optional DeepSeek image recognition; macOS overlay | Transcript review, intent and evidence, action and stop conditions, relationship profiles, CSV candlesticks |
+| Android | Debug APK; device validation pending | Upstream Jev Accessibility capture, offline ML Kit OCR, system overlay | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
+| Windows | Executable-directory ZIP; Windows device validation pending | Upstream Jev WGC capture, RapidOCR, floating window | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
 
-See the [Android source guide](integrations/jev_android/README.md) and [Windows source guide](integrations/jev_windows/README.md) (Chinese). The Mac transcript-review screen, relationship candlesticks, and full profile interface have not yet been ported to the other platforms.
+The [GitHub Actions platform workflow](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/platform-build.yml) produces a debug Android APK, a Windows preview ZIP, and a Mac source ZIP. After extracting the Mac ZIP, run `安装依赖.command`, then `离线演示.command` or `启动.command`. You can also create it locally with `python3 scripts/package_mac.py`. See the [Android guide](integrations/jev_android/README.md) and [Windows guide](integrations/jev_windows/README.md) (Chinese). The Mac transcript-review screen, relationship candlesticks, and full profile interface have not yet been ported to the other platforms.
 
 ## Verification and status
 
@@ -89,6 +89,6 @@ python3 -B scripts/validate_skill.py
 python3 -B -m unittest discover -s tests -q
 ```
 
-This is an **experimental source release**, without a signed or notarized `.app` or device-tested Android/Windows releases. Successful GitHub Actions builds provide a debug Android APK and a Windows preview bundle for testing. Chat app controls and layouts need verification per device and version. If the input control cannot be verified, you can still copy a reply and paste it manually. Cloud image recognition and analysis send the relevant content to the configured services.
+These are **preview builds**, without a signed or notarized Mac `.app` or device-tested Android/Windows releases. Chat app controls and layouts need verification per device and version. If the input control cannot be verified, you can still copy a reply and paste it manually. Cloud image recognition and analysis send the relevant content to the configured services. See the [data-use notice](PRIVACY.md).
 
 The repository bundles Goutoujunshi's behavior rules and selected knowledge. Its original code uses the [MIT License](LICENSE). Mac window modules are adapted from [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac), with its MIT notice in [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE). Android sources come from [Jev Android](https://github.com/jev-chat/jev-chat-jarvis), and Windows sources from [Jev Windows](https://github.com/jev-chat/jev-chat-windows); both retain their LICENSE and NOTICE in their directories. See the [Windows NOTICE](integrations/jev_windows/NOTICE) for the PySide6-Fluent-Widgets distribution license.

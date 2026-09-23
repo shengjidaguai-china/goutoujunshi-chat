@@ -2,7 +2,7 @@
 """起草 3 条候选回复。来源见 core/providers.DRAFT_PROVIDERS，三种协议的调用在 core/llm.py。
 
 跟 jev_client 一样：key 只从环境变量读（起草这把叫 LLM_API_KEY）、绝不把 key 打进日志。
-默认带着 Jev 的判断写（engine 先问一轮，guidance 参数）；拿不到判断就退回盲起草。排序交给 Jev。
+默认带着 Jev 的判断写（engine 先问一轮，guidance 参数）；判断失败则不调用起草。排序交给 Jev。
 """
 from __future__ import annotations
 

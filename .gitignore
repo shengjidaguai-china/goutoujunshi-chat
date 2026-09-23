@@ -16,6 +16,7 @@ integrations/jev_android/.gradle/
 integrations/jev_android/local.properties
 integrations/jev_android/app/build/
 integrations/jev_android/app/*.apk
+dist/
 
 # The raw research workspace is intentionally not part of the distributable skill.
 /恋爱知识库/

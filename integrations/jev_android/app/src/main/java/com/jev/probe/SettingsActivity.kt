@@ -171,7 +171,7 @@ class SettingsActivity : AppCompatActivity() {
         replyCard.addView(label("Base URL"))
         replyCard.addView(replyBaseEdit)
         replyCard.addView(label("密钥"))
-        replyCard.addView(edit(prefs.replyKey, "留空则用判断接口密钥", password = true).also { replyKeyEdit = it })
+        replyCard.addView(edit(prefs.replyKey, "同一服务可留空；跨服务请单独填写", password = true).also { replyKeyEdit = it })
         replyCard.addView(label("模型"))
         replyCard.addView(replyModelEdit)
         val replyResult = resultText()
@@ -179,12 +179,15 @@ class SettingsActivity : AppCompatActivity() {
             val base = replyBaseEdit.text.toString().trim()
             val model = replyModelEdit.text.toString().trim()
             val probe = draftPrefs(SCRATCH_REPLY) {
+                val judgeBase = judgeBaseEdit.text.toString().trim()
+                judgeProvider = resolveJudgeProvider(judgeProviderIdx, judgeBase)
+                judgeBaseUrl = judgeBase.ifBlank { defaultJudgeBase(judgeProvider) }
                 judgeKey = judgeKeyEdit.text.toString().trim()
                 replyBaseUrl = base.ifBlank { Prefs.DEFAULT_REPLY_BASE }
                 replyKey = replyKeyEdit.text.toString().trim()
                 replyModel = model.ifBlank { Prefs.DEFAULT_REPLY_MODEL }
             }
-            if (probe.effectiveReplyKey().isBlank()) { replyResult.text = "请先填密钥（或填判断接口密钥）"; return@cardBtn }
+            if (probe.effectiveReplyKey().isBlank()) { replyResult.text = "请填写回复接口密钥；仅同一服务可共用判断密钥"; return@cardBtn }
             replyResult.text = "测试中…"
             worker.execute {
                 val t0 = System.currentTimeMillis()
@@ -224,7 +227,7 @@ class SettingsActivity : AppCompatActivity() {
         visionCard.addView(label("Base URL"))
         visionCard.addView(visionBaseEdit)
         visionCard.addView(label("密钥"))
-        visionCard.addView(edit(prefs.visionKey, "留空则用回复接口密钥", password = true).also { visionKeyEdit = it })
+        visionCard.addView(edit(prefs.visionKey, "同一服务可留空；跨服务请单独填写", password = true).also { visionKeyEdit = it })
         visionCard.addView(label("模型"))
         visionCard.addView(visionModelEdit)
         val visionResult = resultText()
@@ -235,6 +238,9 @@ class SettingsActivity : AppCompatActivity() {
                 return@cardBtn
             }
             val probe = draftPrefs(SCRATCH_VISION) {
+                val judgeBase = judgeBaseEdit.text.toString().trim()
+                judgeProvider = resolveJudgeProvider(judgeProviderIdx, judgeBase)
+                judgeBaseUrl = judgeBase.ifBlank { defaultJudgeBase(judgeProvider) }
                 judgeKey = judgeKeyEdit.text.toString().trim()
                 replyBaseUrl = replyBaseEdit.text.toString().trim().ifBlank { Prefs.DEFAULT_REPLY_BASE }
                 replyKey = replyKeyEdit.text.toString().trim()
@@ -242,7 +248,7 @@ class SettingsActivity : AppCompatActivity() {
                 visionKey = visionKeyEdit.text.toString().trim()
                 visionModel = visionModelEdit.text.toString().trim().ifBlank { Prefs.DEFAULT_VISION_MODEL }
             }
-            if (probe.effectiveVisionKey().isBlank()) { visionResult.text = "请先填密钥（或填回复/判断接口密钥）"; return@cardBtn }
+            if (probe.effectiveVisionKey().isBlank()) { visionResult.text = "请填写视觉接口密钥；仅同一服务可共用密钥"; return@cardBtn }
             visionResult.text = "测试中…"
             worker.execute {
                 val t0 = System.currentTimeMillis()
@@ -387,7 +393,7 @@ class SettingsActivity : AppCompatActivity() {
             prefs.relationship = relEdit.text.toString()   // blank stays blank, on purpose
             prefs.whitelist = wlEdit.text.toString().split("\n")
                 .map { it.trim() }.filter { it.isNotEmpty() }.toSet()
-            prefs.autoAnalyze = (autoRow.tag as? Boolean) ?: true
+            prefs.autoAnalyze = (autoRow.tag as? Boolean) ?: false
             prefs.ocrFallback = (ocrFallbackRow.tag as? Boolean) ?: true
             prefs.ocrAutoAnalyze = (ocrAutoRow.tag as? Boolean) ?: false
             prefs.contextEnabled = (ctxRow.tag as? Boolean) ?: false
@@ -611,7 +617,7 @@ class SettingsActivity : AppCompatActivity() {
         private const val SCRATCH_REPLY = "jev_probe_scratch_reply"
         private const val SCRATCH_VISION = "jev_probe_scratch_vision"
 
-        private const val PRIVACY_URL = "https://chatjevs.com/privacy.html"
-        private const val REPO_URL = "https://github.com/jev-chat/jev-chat-jarvis"
+        private const val PRIVACY_URL = "https://github.com/shengjidaguai-china/goutoujunshi-chat/blob/main/PRIVACY.md"
+        private const val REPO_URL = "https://github.com/shengjidaguai-china/goutoujunshi-chat"
     }
 }
