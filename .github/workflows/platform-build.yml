@@ -27,6 +27,10 @@ jobs:
       - uses: android-actions/setup-android@v4
       - run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
       - run: ./gradlew :app:assembleDebug --no-daemon
+      - uses: actions/upload-artifact@v4
+        with:
+          name: goutoujunshi-chat-android-debug
+          path: integrations/jev_android/app/build/outputs/apk/debug/*.apk
 
   windows:
     runs-on: windows-latest
@@ -42,3 +46,7 @@ jobs:
       - run: python -m compileall -q app core main.py
       - run: python -m core.draft
       - run: pyinstaller --noconfirm --clean jev.spec
+      - uses: actions/upload-artifact@v4
+        with:
+          name: goutoujunshi-chat-windows-preview
+          path: integrations/jev_windows/dist/goutoujunshi-chat-windows/

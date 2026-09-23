@@ -89,6 +89,6 @@ python3 -B scripts/validate_skill.py
 python3 -B -m unittest discover -s tests -q
 ```
 
-当前发布的是**源码实验版**，没有签名和公证的 `.app`，也没有本项目的 Android APK 或 Windows EXE。不同聊天应用版本的控件与布局需要逐机核对；输入控件不可验证时仍可复制、手动粘贴。云端识图和分析会把对应内容发送到所选模型服务。
+当前发布的是**源码实验版**，没有签名和公证的 `.app`，也没有经过真机验收的 Android／Windows 正式安装包。平台构建成功后，GitHub Actions 会提供 Android 调试 APK 和 Windows 预览包供测试。不同聊天应用版本的控件与布局需要逐机核对；输入控件不可验证时仍可复制、手动粘贴。云端识图和分析会把对应内容发送到所选模型服务。
 
 本项目包含狗头军师的行为规则与按需知识文件。狗头军师主体采用 [MIT 许可](LICENSE)；Mac 窗口模块改编自 [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac)，其 MIT 许可见 [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE)。Android 源码来自 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis)，Windows 源码来自 [Jev Windows](https://github.com/jev-chat/jev-chat-windows)，各自的 LICENSE 和 NOTICE 保留在对应目录。Windows 所用 PySide6-Fluent-Widgets 的发布许可另见 [Windows NOTICE](integrations/jev_windows/NOTICE)。
