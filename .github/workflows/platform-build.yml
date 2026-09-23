@@ -26,7 +26,9 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-      - run: "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
+      - run: >-
+          "$ANDROID_HOME/cmdline-tools/16.0/bin/sdkmanager"
+          "platforms;android-35" "build-tools;35.0.0"
       - run: ./gradlew :app:assembleDebug --no-daemon
 
   windows:
