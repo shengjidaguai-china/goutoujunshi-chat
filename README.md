@@ -1,8 +1,38 @@
+<!-- README_SYNC: source=working-tree; updated=2026-09-23 -->
+
+<p align="center">简体中文 · <a href="./README_EN.md">English</a></p>
+
 # 狗头军师 Chat
 
 **Mac 上的聊天副驾：读屏、核对、分析、生成回复草稿。** 这是从[狗头军师](https://github.com/shengjidaguai-china/goutoujunshi)延伸出来的独立桌面项目。它保留狗头军师按场景取用关系知识、区分事实与推测、给出行动和停止条件的方式，并加入可拖动的悬浮窗。
 
-![狗头军师 Chat 的接口配置窗口](documentation/design/provider-config-preview.png)
+如果这套聊天副驾对你有用，可以给[项目点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)，方便以后找到，也让更多有相同需求的人看到它。
+
+## 界面预览
+
+### 微信旁的悬浮窗
+
+![微信旁的狗头军师悬浮窗，展示意图、依据、建议和候选回复](documentation/screenshots/overlay-in-wechat.png)
+
+*图：作者提供的桌面截图。悬浮窗显示对方可能的意图、模型估计的判断把握、原文依据和候选回复排序。图中的 52%／48% 是这轮候选的相对推荐权重。点击「复制」可取出文字；「填入」只写入当前聊天草稿，发送仍由用户决定。*
+
+### 详细分析
+
+![狗头军师详细分析的离线合成演示](documentation/screenshots/analysis-detail-demo.png)
+
+*图：离线合成演示。详细页把可能意图、军师建议、自己的感受、已知事实与合理推测分开；「核对原文」页供分析前检查识别结果。图中的 62% 是模型对意图推测的自评，并非经过验证的概率。*
+
+### 关系趋势 K 线入口
+
+![关系趋势 K 线窗口，可选择走势案例或导入聊天 CSV](documentation/screenshots/kline-window.png)
+
+*图：从悬浮窗的「K线」按钮进入趋势窗口。可以查看五组走势案例，或导入含 `timestamp,sender,message` 三列的聊天 CSV；导入记录按消息方向计算每日开高低收，需要先核对 `sender` 为 `me` 或 `other`。当前微信窗口 OCR 只提供可见内容，不能据此拼出长期时间线。*
+
+### 五种走势怎样读
+
+![五种关系走势的 K 线读图示例](documentation/screenshots/five-kline-patterns.png)
+
+*图：五种关系走势案例，包括双向升温、热聊后降温、冲突后修复、忙但仍兑现和明确边界后收线。图中的 0–100 指数按案例事件手工设定，帮助结合事件读走势；它不代表关系成功率。图右下角“当前 Mac 悬浮窗没有 K 线功能”是早期制图时的旧说明；当前版本已提供上图所示的 K 线窗口。*
 
 ## 一轮怎么用
 
@@ -20,7 +50,7 @@
 - **像自己说话**：只参考当前会话中经过核对、确认为「我」的原话；「更像我一点」可重新调整候选口吻。不训练模型，也不读取其他会话来模仿。
 - **把理由讲清楚**：每条候选可展开适用理由和代价；建议同时给观察窗口与停止条件，避免只产出一句话术。
 - **关系档案可选择**：首次明确同意后才保存有限的对象背景，可查看、暂停、撤销和删除；不存整份聊天。
-- **K 线有计算口径**：内置五组合成事件示例，也能导入核对过双方身份的 CSV，按每日消息方向绘图。图线不代表关系质量或爱意分数。
+- **K 线有计算口径**：内置五组走势案例，也能导入核对过双方身份的 CSV，按每日消息方向绘图。图线不代表关系质量或爱意分数。
 - **控制留给用户**：OCR 后先核对，自动分析默认关闭，填入前重新检查会话；程序不会替你点发送。
 
 ## 安装与启动
@@ -35,6 +65,10 @@ uv pip install --python .venv/bin/python -r requirements.txt
 ```
 
 `--demo` 使用合成对话，离线展示界面，不读取微信、不调用模型。真实使用时运行 `./start.command`；`./start.command --settings` 可直接打开设置，点击「接口与模型 → 配置接口」填写 DeepSeek Key，并按需填写 TypeSafe Jev Key。打开微信后，需要给**启动程序的终端**授予 macOS「屏幕录制」权限；使用「填入」还需要「辅助功能」权限。
+
+![狗头军师 Chat 的接口配置窗口](documentation/design/provider-config-preview.png)
+
+*图：接口配置页的离线预览。DeepSeek 与 Jev 分别保存 Key；已有值不会回显，图片里没有真实密钥。*
 
 模型、OCR、钥匙串、可选环境变量、K 线 CSV 格式和操作限制见 [Mac 使用说明](integrations/jev_mac/README.md)。
 
