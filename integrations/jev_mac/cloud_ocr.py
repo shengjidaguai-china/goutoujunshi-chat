@@ -9,7 +9,6 @@ from pathlib import Path
 from types import SimpleNamespace
 
 from client import Config, DEEPSEEK_BASES, DEEPSEEK_MODEL, complete
-from vendor import perception
 
 MAX_IMAGE_BYTES = 32 * 1024 * 1024
 _last_read = None
@@ -26,6 +25,7 @@ def _chat_png(image):
     """Keep chat header and bubbles, excluding the sidebar and compose box."""
     import AppKit as A
     import Quartz
+    from vendor import perception
 
     width, height = Quartz.CGImageGetWidth(image), Quartz.CGImageGetHeight(image)
     left = int(width * perception.CHAT_PANE_X_MIN)
@@ -47,6 +47,7 @@ def _chat_png(image):
 def _capture_window():
     import Quartz
     from Foundation import NSURL
+    from vendor import perception
 
     win = perception.find_wechat_window()
     if win is None:
