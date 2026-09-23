@@ -1,0 +1,56 @@
+Jev 聊天助手 Windows 版 (jev-chat-windows)
+Copyright (c) 2026 rezoch340 and the jev-chat contributors
+https://github.com/jev-chat/jev-chat-windows
+
+本项目基于 Jev 聊天助手（https://github.com/jev-chat/jev-chat-jarvis）二次开发，Jev 判断内核与
+题目口径来自上游，其版权归 Finderchangchang and the jev-chat contributors 所有。
+
+本项目自身代码以 MIT 协议开源（见 LICENSE）。
+
+- 允许个人和商业使用、修改、再分发、集成到自有产品中，无需付费或事先授权。
+- 分发或商用时，必须保留 LICENSE 与本 NOTICE 文件，并在产品的「关于」页、说明文档或发布页中注明出处。
+  推荐写法：基于 jev-chat-windows（https://github.com/jev-chat/jev-chat-windows）二次开发 / 集成。
+- 不得使用「jev-chat-windows」「Jev 聊天助手」「jev-chat」名称或 chatjevs.com 域名暗示由原作者出品或背书。
+
+注意：上面三条只约束本项目自己的代码。Windows 发布包（PyInstaller 打的 zip）里还打包了
+PySide6-Fluent-Widgets，该组件是 GPLv3 协议，非商用免费，商用需要另外购买商业授权（见下面
+「第三方组件」）。因此发布包整体受 GPLv3 约束：想商用的人请自行向该组件作者购买商业授权，
+或者自己换掉这个组件，本项目不代为处理，也不对发布包能不能商用做任何保证。
+
+## 第三方组件
+
+| 组件 | 许可证 | 备注 |
+| --- | --- | --- |
+| PySide6-Fluent-Widgets | GPLv3 | 非商用免费；商用需向 https://qfluentwidgets.com/price 购买商业授权（作者原话："Non-commercial usage is licensed under GPLv3. For commercial purposes, please purchase commercial license."） |
+| PySide6 | LGPL-3.0 | Qt for Python 官方绑定 |
+| RapidOCR (rapidocr-onnxruntime) | Apache-2.0 | 离线中文 OCR |
+| windows-capture | MIT | Windows Graphics Capture 的 Python 绑定 |
+| openai | Apache-2.0 | OpenAI 官方 SDK，起草走 OpenAI 协议时使用 |
+| anthropic | MIT | Anthropic 官方 SDK |
+| google-genai | Apache-2.0 | Google Gemini 官方 SDK |
+| typesafe-sdk | MIT | TypeSafe 官方 SDK，Jev 判断走 TypeSafe 直连时使用 |
+
+各组件的完整许可证文本以其官方发行包（PyPI / 官网）为准，本文件不逐一转载。
+
+---
+
+This project's own code is licensed under the MIT License (see LICENSE).
+Commercial use, modification and redistribution of this project's code are
+permitted. When you distribute or commercialize this software or a
+derivative, keep the LICENSE and this NOTICE, and credit the source, e.g.
+"Based on jev-chat-windows (https://github.com/jev-chat/jev-chat-windows)".
+Do not use the project name, "Jev Chat Assistant", "jev-chat" or the
+chatjevs.com domain to imply endorsement by the original authors.
+
+This project is the Windows sister project of Jev Chat Assistant
+(https://github.com/jev-chat/jev-chat-jarvis); the Jev decision engine and
+question set are derived from that upstream project, copyright
+Finderchangchang and the jev-chat contributors.
+
+Note: the release zip bundles PySide6-Fluent-Widgets, which is licensed
+under GPLv3 (free for non-commercial use; a commercial license must be
+purchased separately, see https://qfluentwidgets.com/price). As a result
+the Windows release package as a whole is bound by GPLv3 terms. Commercial
+users must obtain that license themselves or replace the component; this
+project does not do so on your behalf and makes no guarantee about the
+package's suitability for commercial use.

@@ -4,7 +4,7 @@
 
 # 狗头军师 Chat
 
-**Mac 上的聊天副驾：读屏、核对、分析、生成回复草稿。** 这是从[狗头军师](https://github.com/shengjidaguai-china/goutoujunshi)延伸出来的独立桌面项目。它保留狗头军师按场景取用关系知识、区分事实与推测、给出行动和停止条件的方式，并加入可拖动的悬浮窗。
+**聊天窗口旁的狗头军师：读屏、分析、生成回复草稿。** 这是从[狗头军师](https://github.com/shengjidaguai-china/goutoujunshi)延伸出来的独立项目。Mac 版已实现完整的核对与分析流程；Android、Windows 现有源码适配，仍需在对应设备完成构建和实测。三端都保留“用户自己决定是否发送”的原则。
 
 如果这套聊天副驾对你有用，可以给[项目点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)，方便以后找到，也让更多有相同需求的人看到它。
 
@@ -72,6 +72,16 @@ uv pip install --python .venv/bin/python -r requirements.txt
 
 模型、OCR、钥匙串、可选环境变量、K 线 CSV 格式和操作限制见 [Mac 使用说明](integrations/jev_mac/README.md)。
 
+## Android 与 Windows 源码适配
+
+| 平台 | 当前状态 | 读屏与悬浮窗 | 已接入的狗头军师能力 |
+| --- | --- | --- | --- |
+| macOS | 源码实验版，已在 Mac 上运行 | Apple Vision／可选 DeepSeek 识图、macOS 悬浮窗 | 核对原文、意图与依据、行动／停止条件、关系档案、CSV 关系 K 线 |
+| Android | 源码集成，待真机验收 | 上游 Jev 的无障碍、ML Kit 离线 OCR、系统悬浮窗 | 先判断再起草、自然口吻、原文依据、未知、下一步、停止条件、明确拒绝时不生成回复 |
+| Windows | 源码集成，待 Windows 实机验收 | 上游 Jev 的 WGC 窗口采集、RapidOCR、置顶窗口 | 先判断再起草、自然口吻、原文依据、未知、下一步、停止条件、明确拒绝时不生成回复 |
+
+Android 和 Windows 的说明分别见 [Android 源码说明](integrations/jev_android/README.md) 和 [Windows 源码说明](integrations/jev_windows/README.md)。两端暂未移植 Mac 的手动核对页、关系 K 线和完整关系档案界面；请勿把这些源码当成已发布、已实测的安装包。
+
 ## 验证与状态
 
 ```bash
@@ -79,6 +89,6 @@ python3 -B scripts/validate_skill.py
 python3 -B -m unittest discover -s tests -q
 ```
 
-当前发布的是**源码实验版**，没有签名和公证的 `.app`。不同微信版本的控件与布局需要逐机核对；输入控件不可验证时仍可复制、手动粘贴。云端识图和分析会发送你确认范围内的内容到所选服务。
+当前发布的是**源码实验版**，没有签名和公证的 `.app`，也没有本项目的 Android APK 或 Windows EXE。不同聊天应用版本的控件与布局需要逐机核对；输入控件不可验证时仍可复制、手动粘贴。云端识图和分析会把对应内容发送到所选模型服务。
 
-本项目包含狗头军师的行为规则与按需知识文件，以便桌面端独立运行。狗头军师主体采用 [MIT 许可](LICENSE)；窗口感知和辅助功能模块改编自 [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac)，其 MIT 许可见 [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE)。
+本项目包含狗头军师的行为规则与按需知识文件。狗头军师主体采用 [MIT 许可](LICENSE)；Mac 窗口模块改编自 [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac)，其 MIT 许可见 [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE)。Android 源码来自 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis)，Windows 源码来自 [Jev Windows](https://github.com/jev-chat/jev-chat-windows)，各自的 LICENSE 和 NOTICE 保留在对应目录。Windows 所用 PySide6-Fluent-Widgets 的发布许可另见 [Windows NOTICE](integrations/jev_windows/NOTICE)。

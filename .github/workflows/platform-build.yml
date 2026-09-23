@@ -1,0 +1,44 @@
+name: Android and Windows source builds
+
+on:
+  push:
+    paths:
+      - "integrations/jev_android/**"
+      - "integrations/jev_windows/**"
+      - ".github/workflows/platform-build.yml"
+  pull_request:
+    paths:
+      - "integrations/jev_android/**"
+      - "integrations/jev_windows/**"
+      - ".github/workflows/platform-build.yml"
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: integrations/jev_android
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+      - run: ./gradlew :app:assembleDebug --no-daemon
+
+  windows:
+    runs-on: windows-latest
+    defaults:
+      run:
+        working-directory: integrations/jev_windows
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements.txt pyinstaller
+      - run: python -m compileall -q app core main.py
+      - run: python -m core.draft
+      - run: pyinstaller --noconfirm --clean jev.spec

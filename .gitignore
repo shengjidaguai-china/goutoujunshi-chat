@@ -8,6 +8,14 @@ __pycache__/
 .env.*
 integrations/jev_mac/settings.local.json
 integrations/jev_mac/settings.local.tmp
+integrations/jev_windows/config.json
+integrations/jev_windows/build/
+integrations/jev_windows/dist/
+integrations/jev_windows/*.spec.bak
+integrations/jev_android/.gradle/
+integrations/jev_android/local.properties
+integrations/jev_android/app/build/
+integrations/jev_android/app/*.apk
 
 # The raw research workspace is intentionally not part of the distributable skill.
 /恋爱知识库/

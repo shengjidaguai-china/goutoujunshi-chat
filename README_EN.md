@@ -4,7 +4,7 @@
 
 # Goutoujunshi Chat
 
-**A Mac chat companion for screen reading, transcript review, relationship analysis, and reply drafts.** This standalone desktop project builds on [Goutoujunshi](https://github.com/shengjidaguai-china/goutoujunshi). It retains the original project's scenario-specific relationship guidance, evidence boundaries, next steps, and stop conditions, then brings them into a draggable overlay.
+**Goutoujunshi beside your chat window: screen reading, analysis, and reply drafts.** This standalone project builds on [Goutoujunshi](https://github.com/shengjidaguai-china/goutoujunshi). The Mac workflow is implemented; Android and Windows source integrations are now included but still need builds and testing on those platforms. Sending remains your decision on every platform.
 
 If it helps you, [Star the project](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers) so you can find it again and help others discover it.
 
@@ -72,6 +72,16 @@ uv pip install --python .venv/bin/python -r requirements.txt
 
 For models, OCR choices, Keychain and environment configuration, CSV format, and operating limits, see the [Mac usage guide](integrations/jev_mac/README.md) (Chinese).
 
+## Android and Windows source integrations
+
+| Platform | Status | Capture and overlay | Goutoujunshi behavior included |
+| --- | --- | --- | --- |
+| macOS | Experimental source version, run on Mac | Apple Vision or optional DeepSeek image recognition; macOS overlay | Transcript review, intent and evidence, action and stop conditions, relationship profiles, CSV candlesticks |
+| Android | Source integrated; device validation pending | Upstream Jev Accessibility capture, offline ML Kit OCR, system overlay | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
+| Windows | Source integrated; Windows validation pending | Upstream Jev WGC capture, RapidOCR, floating window | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
+
+See the [Android source guide](integrations/jev_android/README.md) and [Windows source guide](integrations/jev_windows/README.md) (Chinese). The Mac transcript-review screen, relationship candlesticks, and full profile interface have not yet been ported to the other platforms.
+
 ## Verification and status
 
 ```bash
@@ -79,6 +89,6 @@ python3 -B scripts/validate_skill.py
 python3 -B -m unittest discover -s tests -q
 ```
 
-This is an **experimental source release**, without a signed or notarized `.app`. WeChat controls and layouts need verification on each supported version. If the input control cannot be verified, you can still copy a reply and paste it manually. Cloud image recognition and analysis send the selected content to the configured services.
+This is an **experimental source release**, without a signed or notarized `.app` or a Goutoujunshi Android APK or Windows EXE. Chat app controls and layouts need verification per device and version. If the input control cannot be verified, you can still copy a reply and paste it manually. Cloud image recognition and analysis send the relevant content to the configured services.
 
-The repository bundles Goutoujunshi's behavior rules and selected knowledge so that the desktop app can run on its own. The main project uses the [MIT License](LICENSE). Window perception and Accessibility modules are adapted from [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac); its MIT notice is in [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE).
+The repository bundles Goutoujunshi's behavior rules and selected knowledge. Its original code uses the [MIT License](LICENSE). Mac window modules are adapted from [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac), with its MIT notice in [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE). Android sources come from [Jev Android](https://github.com/jev-chat/jev-chat-jarvis), and Windows sources from [Jev Windows](https://github.com/jev-chat/jev-chat-windows); both retain their LICENSE and NOTICE in their directories. See the [Windows NOTICE](integrations/jev_windows/NOTICE) for the PySide6-Fluent-Widgets distribution license.
