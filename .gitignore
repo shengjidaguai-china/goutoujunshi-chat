@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+.vscode/
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+integrations/jev_mac/settings.local.json
+integrations/jev_mac/settings.local.tmp
+
+# The raw research workspace is intentionally not part of the distributable skill.
+/恋爱知识库/

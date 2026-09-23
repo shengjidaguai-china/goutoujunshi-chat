@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "synthetic": true,
+  "sender_mapping": {"me": "用户", "other": "对象"},
+  "cases": [
+    {
+      "id": "mutual_warming",
+      "title": "双向升温",
+      "csv": "mutual_warming.csv",
+      "profile": {"label": "小岚（虚构）", "stage": "了解中", "goal": "主动邀约", "background": "朋友介绍认识两周；线下见面安排仅以聊天中双方确认的内容为准。", "my_mbti": "INFP", "their_mbti": "", "my_score": "", "their_score": "78", "notes": "MBTI 和评分均为虚构用户自填；78 是主观综合评分，不是对方兴趣概率。"},
+      "expected_pattern": "双方从日常接话推进到具体邀约、兑现和下一次主动提议；趋势可呈持续上行，但不推断确定关系。",
+      "key_events": [
+        {"at": "2026-08-04 20:18:00", "kind": "plan_confirmed", "evidence": "对方确认周六看展及碰面时间"},
+        {"at": "2026-08-09 11:42:00", "kind": "reciprocal_initiative", "evidence": "对方主动提出下次去书店"},
+        {"at": "2026-08-16 18:25:00", "kind": "follow_through", "evidence": "双方在聊天中确认已见面"}
+      ],
+      "unknowns": ["对方是否希望进入排他关系", "线下相处的完整感受"],
+      "suggested_next_step": "沿着双方已经提过的书店计划给出一个具体、可退出的时间。"
+    },
+    {
+      "id": "hot_then_cool",
+      "title": "热聊后降温",
+      "csv": "hot_then_cool.csv",
+      "profile": {"label": "阿澈（虚构）", "stage": "了解中", "goal": "减少投入", "background": "一开始聊得密集；最近两次约见都没有定下替代时间。", "my_mbti": "", "their_mbti": "", "my_score": "", "their_score": "", "notes": "不清楚对方近期的线下情况。"},
+      "expected_pattern": "初期主动和长回复较多，后来邀约反复落空且缺少替代安排；可显示降温，但原因未知。",
+      "key_events": [
+        {"at": "2026-08-02 22:13:00", "kind": "mutual_engagement", "evidence": "双方主动延长话题"},
+        {"at": "2026-08-11 19:08:00", "kind": "plan_deferred", "evidence": "对方推迟周末邀约，未给替代时间"},
+        {"at": "2026-08-18 21:31:00", "kind": "plan_deferred_again", "evidence": "第二次仍未提出可行时间"}
+      ],
+      "unknowns": ["忙碌是否为主要原因", "是否存在不在聊天中的主动联系"],
+      "suggested_next_step": "暂停连续追问，让对方给出具体安排；若始终没有行动，降低投入。"
+    },
+    {
+      "id": "conflict_then_repair",
+      "title": "冲突后修复",
+      "csv": "conflict_then_repair.csv",
+      "profile": {"label": "小禾（虚构）", "stage": "约会中", "goal": "修复冲突", "background": "一次约定临时落空，双方随后讨论如何提前沟通变更。", "my_mbti": "", "their_mbti": "", "my_score": "", "their_score": "", "notes": "重点看补救是否兑现，而非只看道歉措辞。"},
+      "expected_pattern": "失约时明显下探；具体道歉、重约并兑现后回升，但仍需观察后续一致性。",
+      "key_events": [
+        {"at": "2026-08-05 18:40:00", "kind": "broken_plan", "evidence": "对方在约定时间后告知无法赴约"},
+        {"at": "2026-08-05 19:02:00", "kind": "repair_offer", "evidence": "对方承认处理不妥并提出补约"},
+        {"at": "2026-08-09 18:12:00", "kind": "follow_through", "evidence": "双方在聊天中确认补约已兑现"}
+      ],
+      "unknowns": ["此前是否反复失约", "线下讨论是否形成稳定做法"],
+      "suggested_next_step": "认可已经兑现的补救，同时观察下一次计划变更是否提前沟通。"
+    },
+    {
+      "id": "busy_but_reliable",
+      "title": "忙但仍兑现",
+      "csv": "busy_but_reliable.csv",
+      "profile": {"label": "宁宁（虚构）", "stage": "了解中", "goal": "自然接话", "background": "对方提前说明项目交付周会慢回，仍主动给出见面时间。", "my_mbti": "", "their_mbti": "", "my_score": "", "their_score": "", "notes": "把互动频率与约定兑现分开看。"},
+      "expected_pattern": "消息量短期下降，但有预告、具体替代时间和兑现；不应机械地判为关系降温。",
+      "key_events": [
+        {"at": "2026-08-03 20:12:00", "kind": "constraint_explained", "evidence": "对方提前说明交付期会慢回"},
+        {"at": "2026-08-03 20:13:00", "kind": "plan_proposed", "evidence": "对方同时提出周六具体见面时间"},
+        {"at": "2026-08-08 16:02:00", "kind": "follow_through", "evidence": "约定当日对方主动确认已到"}
+      ],
+      "unknowns": ["交付期结束后的联系节奏", "双方对沟通频率的偏好"],
+      "suggested_next_step": "按已经约好的节奏联系，交付期过后再讨论彼此舒服的频率。"
+    },
+    {
+      "id": "clear_boundary",
+      "title": "明确边界后收线",
+      "csv": "clear_boundary.csv",
+      "profile": {"label": "阿予（虚构）", "stage": "关系结束", "goal": "结束联系", "background": "对方明确表示不想继续发展并要求停止联系。", "my_mbti": "", "their_mbti": "", "my_score": "", "their_score": "", "notes": "不再生成追求或试探话术。"},
+      "expected_pattern": "先有普通交流，随后出现明确的停止信号；图表只能记录事件，不应用技术指标寻找反转。",
+      "key_events": [
+        {"at": "2026-08-07 19:22:00", "kind": "explicit_boundary", "evidence": "对方明确说不想继续发展"},
+        {"at": "2026-08-07 19:24:00", "kind": "contact_stop_requested", "evidence": "对方要求不要继续联系"},
+        {"at": "2026-08-07 19:27:00", "kind": "boundary_respected", "evidence": "用户确认尊重边界，此后无消息"}
+      ],
+      "unknowns": ["聊天之外是否还存在必须处理的实际事务"],
+      "suggested_next_step": "停止主动联系；如无必须处理的实际事务，不再发送消息。"
+    }
+  ]
+}

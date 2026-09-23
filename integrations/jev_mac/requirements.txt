@@ -1,0 +1,4 @@
+pyobjc-framework-Cocoa>=10.3,<13
+pyobjc-framework-Quartz>=10.3,<13
+pyobjc-framework-Vision>=10.3,<13
+pyobjc-framework-ApplicationServices>=10.3,<13
