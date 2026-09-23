@@ -73,6 +73,6 @@ uv pip install --python .venv/bin/python -r requirements.txt
 模型、OCR、钥匙串、可选环境变量、K 线 CSV 格式和操作限制见 [Mac 使用说明](integrations/jev_mac/README.md)。
 
 联系我加入升级打怪开源群：
-Email：247133278@qq.com
-WeChat：loonges
-QQ：247133278
+Email：247133278@qq.com<br>
+WeChat：loonges<br>
+QQ：247133278<br>
