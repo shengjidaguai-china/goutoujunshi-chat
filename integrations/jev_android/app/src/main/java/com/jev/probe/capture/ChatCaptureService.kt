@@ -288,8 +288,14 @@ open class ChatCaptureService : AccessibilityService() {
 
     private fun snapshotIsCurrent(snapshot: ChatSnapshot, pkg: String): Boolean {
         val current = currentSnapshot ?: return false
-        return pkg.isNotBlank() && rootInActiveWindow?.packageName?.toString() == pkg &&
-            current.title == snapshot.title && current.signature() == snapshot.signature()
+        val root = rootInActiveWindow ?: return false
+        if (pkg.isBlank() || root.packageName?.toString() != pkg ||
+            current.title != snapshot.title || current.signature() != snapshot.signature()) return false
+        // A new chat can be visible before OCR finishes and updates currentSnapshot.
+        // Check the live title too, so the previous chat's result cannot flash over it.
+        val adapter = adapters[pkg] ?: return true // manual OCR in an unadapted app
+        val liveTitle = adapter.extract(root, resources)?.title ?: return false
+        return isTransientTitle(liveTitle) || liveTitle == snapshot.title
     }
 
     private fun finishAnalysis(snapshot: ChatSnapshot, pkg: String, display: () -> Unit) {

@@ -29,7 +29,10 @@ class JevClient(prefs: Prefs) {
     ): List<RankedReply> {
         val candidates = replyClient.draft(snapshot, relationship, ctx, judgment)
         if (candidates.isEmpty()) return emptyList()
-        return judgeClient.rank(snapshot, relationship, candidates, ctx)
+        // A ranking outage must not discard drafts that were already generated.
+        // Zero means "ranking pending" in the overlay, not a 0% success chance.
+        return try { judgeClient.rank(snapshot, relationship, candidates, ctx) }
+        catch (_: Exception) { candidates.map { RankedReply(it, 0.0) } }
     }
 
     /** Judge + replies, sequential. Used by the settings connectivity test. */

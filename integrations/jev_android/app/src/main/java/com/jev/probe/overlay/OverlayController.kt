@@ -451,6 +451,8 @@ class OverlayController(private val ctx: Context) {
             a.rankedReplies.forEachIndexed { i, r ->
                 views.add(replyCard(i + 1, r.text, (r.prob * 100).roundToInt(), fill))
             }
+            if (a.rankedReplies.isNotEmpty() && a.rankedReplies.all { it.prob == 0.0 })
+                views.add(hint("排序暂不可用，候选保留生成顺序。"))
             if (a.rankedReplies.isEmpty()) {
                 val msg = replyError?.let { "回复接口出错：$it" }
                     ?: if (evidenceSnapshot?.let { GoutouGuidance.explicitBoundary(it) } == true)
