@@ -1,4 +1,4 @@
-<!-- README_SYNC: source=working-tree; updated=2026-09-23 -->
+<!-- README_SYNC: source=working-tree; updated=2026-09-24 -->
 
 <p align="center"><a href="./README.md">简体中文</a> · English</p>
 
@@ -8,7 +8,21 @@
 
 If it helps you, [Star the project](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers) so you can find it again and help others discover it.
 
+## Preview packages for three platforms
+
+Open the latest successful run on the [GitHub Actions build page](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml) and download the Artifacts at the bottom. The Android artifact is an outer ZIP containing the APK. Extract the full Windows ZIP before launching its executable.
+
+| Platform | Artifact | Current status |
+| --- | --- | --- |
+| macOS | `goutoujunshi-jev-chat-mac-source` | Source ZIP. Run `安装依赖.command`, then `离线演示.command` or `启动.command`. Requires Python 3.12 and uv; there is no signed `.app`. |
+| Android | `goutoujunshi-jev-chat-android-debug` | Debug APK. Automated build and unit tests pass; Android device validation is pending. |
+| Windows | `goutoujunshi-jev-chat-windows-preview` | Executable-directory ZIP. Automated build passes; Windows device validation is pending. |
+
+The screenshots and full transcript review, relationship profiles, and candlestick view below are from the Mac version. Android and Windows include chat capture, Jev judgment, and reply drafting, but those full screens have not been ported. See the [Android guide](integrations/jev_android/README.md) and [Windows guide](integrations/jev_windows/README.md).
+
 ## Screenshots
+
+These screenshots show the Mac version. Synthetic demo data is labeled separately from live captures.
 
 ### Overlay beside WeChat
 
@@ -72,23 +86,15 @@ uv pip install --python .venv/bin/python -r requirements.txt
 
 For models, OCR choices, Keychain and environment configuration, CSV format, and operating limits, see the [Mac usage guide](integrations/jev_mac/README.md) (Chinese).
 
-## Preview packages for three platforms
-
-| Platform | Status | Capture and overlay | Goutoujunshi behavior included |
-| --- | --- | --- | --- |
-| macOS | Run on Mac; source ZIP with dependency setup | Apple Vision or optional DeepSeek image recognition; macOS overlay | Transcript review, intent and evidence, action and stop conditions, relationship profiles, CSV candlesticks |
-| Android | Debug APK; device validation pending | Upstream Jev Accessibility capture, offline ML Kit OCR, system overlay | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
-| Windows | Executable-directory ZIP; Windows device validation pending | Upstream Jev WGC capture, RapidOCR, floating window | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
-
-The [GitHub Actions platform workflow](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml) produces a debug Android APK, a Windows preview ZIP, and a Mac source ZIP. After extracting the Mac ZIP, run `安装依赖.command`, then `离线演示.command` or `启动.command`. You can also create it locally with `python3 scripts/package_mac.py`. See the [Android guide](integrations/jev_android/README.md) and [Windows guide](integrations/jev_windows/README.md) (Chinese). The Mac transcript-review screen, relationship candlesticks, and full profile interface have not yet been ported to the other platforms.
-
 ## Verification and status
+
+As checked on September 24, 2026: 79 Python tests passed; all three automated platform builds passed; and the Mac ZIP was extracted, its dependencies installed, and its offline demo launched. To repeat the local checks:
 
 ```bash
 python3 -B scripts/validate_skill.py
 python3 -B -m unittest discover -s tests -q
 ```
 
-These are **preview builds**, without a signed or notarized Mac `.app` or device-tested Android/Windows releases. Chat app controls and layouts need verification per device and version. If the input control cannot be verified, you can still copy a reply and paste it manually. Cloud image recognition and analysis send the relevant content to the configured services. See the [data-use notice](PRIVACY.md).
+These are **preview builds**. Live WeChat capture, model requests, and Accessibility filling on Mac were not repeated in this offline check. Android and Windows still need device-level checks of capture, overlay, and filling against actual chat app versions. An incomplete Jev judgment stops reply drafting; Android retains drafts with a “ranking pending” label if ranking fails. Windows filling uses window coordinates: it checks the current chat and foreground window, but cannot read back the input control. Copy and paste manually when the target is uncertain. Cloud image recognition and analysis send relevant content to the configured services. See the [data-use notice](PRIVACY.md).
 
 The repository bundles Goutoujunshi's behavior rules and selected knowledge. Its original code uses the [MIT License](LICENSE). Mac window modules are adapted from [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac), with its MIT notice in [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE). Android sources come from [Jev Android](https://github.com/jev-chat/jev-chat-jarvis), and Windows sources from [Jev Windows](https://github.com/jev-chat/jev-chat-windows); both retain their LICENSE and NOTICE in their directories. See the [Windows NOTICE](integrations/jev_windows/NOTICE) for the PySide6-Fluent-Widgets distribution license.

@@ -1,4 +1,4 @@
-<!-- README_SYNC: source=working-tree; updated=2026-09-23 -->
+<!-- README_SYNC: source=working-tree; updated=2026-09-24 -->
 
 <p align="center">简体中文 · <a href="./README_EN.md">English</a></p>
 
@@ -8,7 +8,21 @@
 
 如果这套聊天副驾对你有用，可以给[项目点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers)，方便以后找到，也让更多有相同需求的人看到它。
 
+## 三端预览包
+
+在 [GitHub Actions 构建页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml)打开最近一次成功运行，从页面下方的 Artifacts 下载。Android 的构建产物外层是 ZIP，解压后取得 APK；Windows 的 ZIP 需完整解压后运行其中的程序。
+
+| 平台 | 构建产物 | 当前状态 |
+| --- | --- | --- |
+| macOS | `goutoujunshi-jev-chat-mac-source` | 源码 ZIP；解压后运行 `安装依赖.command`，再运行 `离线演示.command` 或 `启动.command`。需要 Python 3.12 和 uv，尚无签名 `.app`。 |
+| Android | `goutoujunshi-jev-chat-android-debug` | 调试 APK；自动构建和单元测试通过，待 Android 真机验收。 |
+| Windows | `goutoujunshi-jev-chat-windows-preview` | 可执行目录 ZIP；自动构建通过，待 Windows 实机验收。 |
+
+三端的功能范围目前不同：下方截图和完整的原文核对、关系档案、关系 K 线属于 Mac 版；Android 与 Windows 已接入聊天识别、Jev 判断和候选回复流程，尚未移植上述完整界面。分别查看 [Android 使用说明](integrations/jev_android/README.md) 和 [Windows 使用说明](integrations/jev_windows/README.md)。
+
 ## 界面预览
+
+以下截图展示 Mac 版；演示图中的数据与真实会话分开标注。
 
 ### 微信旁的悬浮窗
 
@@ -53,7 +67,7 @@
 - **K 线有计算口径**：内置五组走势案例，也能导入核对过双方身份的 CSV，按每日消息方向绘图。图线不代表关系质量或爱意分数。
 - **控制留给用户**：OCR 后先核对，自动分析默认关闭，填入前重新检查会话；程序不会替你点发送。
 
-## 安装与启动
+## Mac 安装与启动
 
 需要 macOS、Python 3.12 和 [`uv`](https://docs.astral.sh/uv/)。在仓库根目录运行：
 
@@ -70,7 +84,21 @@ uv pip install --python .venv/bin/python -r requirements.txt
 
 *图：接口配置页的离线预览。DeepSeek 与 Jev 分别保存 Key；已有值不会回显，图片里没有真实密钥。*
 
-模型、OCR、钥匙串、可选环境变量、K 线 CSV 格式和操作限制见 [Mac 使用说明](integrations/jev_mac/README.md)。<br>
+模型、OCR、钥匙串、可选环境变量、K 线 CSV 格式和操作限制见 [Mac 使用说明](integrations/jev_mac/README.md)。
+
+## 自检与使用边界
+
+2026 年 9 月 24 日自检：79 项 Python 测试通过；三端自动构建通过；Mac ZIP 已实际解压、安装依赖并启动离线演示。可以在本地复查：
+
+```bash
+python3 -B scripts/validate_skill.py
+python3 -B -m unittest discover -s tests -q
+```
+
+这些是预览包。Mac 的真实微信读屏、模型接口与辅助功能填入没有在本轮离线自检中重复验证；Android 和 Windows 的聊天识别、悬浮窗及填入仍需在对应设备与微信版本上验收。判断结果缺失时会停止生成回复；Android 排序失败时保留候选并标记排序待定。Windows 的填入依赖窗口坐标，虽会检查当前会话和前台窗口，仍无法读回验证输入控件；不确定时可复制候选后手动粘贴。云端识图与分析会将相关内容发送给所配置的服务，详见[数据使用说明](PRIVACY.md)。
+
+仓库主体采用 [MIT 许可证](LICENSE)。Mac 窗口模块参考 [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac)，保留其 [MIT 说明](integrations/jev_mac/vendor/LICENSE)；Android 与 Windows 分别参考 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis) 和 [Jev Windows](https://github.com/jev-chat/jev-chat-windows)，第三方分发注意事项见 [Windows NOTICE](integrations/jev_windows/NOTICE)。
+
 这里非常感谢 jev-chat-jarvis项目，<br>
 从该项目得到启发，结合goutoujunshi而来。
 
