@@ -48,6 +48,10 @@ def fill_reply(text):
         raise RuntimeError("未找到微信窗口，请确认微信已打开")
     if state["area"] is None:
         raise RuntimeError("微信输入区域尚不可用，请确认微信聊天窗口可见（不要最小化）")
+    if not state["chat"] or ov.current_chat() != state["chat"]:
+        raise RuntimeError("会话已切换，先核对当前微信会话再填入")
+    if find_wechat_hwnd() != state["hwnd"]:
+        raise RuntimeError("微信窗口已变化，等待采集更新后重试")
     if settings.reply_target() and ov.at_prefix_enabled():
         target = target_of(ov.current_chat())  # 填进去的是界面上正看着的那个会话的对象
         if target:

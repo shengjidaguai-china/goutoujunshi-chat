@@ -241,14 +241,16 @@ open class ChatCaptureService : AccessibilityService() {
     }
 
     private fun runAnalysis() {
-        val snapshot = pendingSnapshot ?: return
         if (analyzing) return
+        val snapshot = pendingSnapshot ?: return
+        pendingSnapshot = null
+        val pkg = activePkg ?: foregroundPkg ?: ""
+        if (!snapshotIsCurrent(snapshot, pkg)) return
         if (!prefs.hasKey()) { main.post { overlay?.showError("未设置判断接口密钥，去设置里填") }; return }
         analyzing = true
         main.post { overlay?.showLoading(); overlay?.setNote(snapshot.note); overlay?.setSnapshot(snapshot) }
         val client = JevClient(prefs)
         val rel = prefs.relationship
-        val pkg = activePkg ?: ""
         // Knowledge context first (local file reads only, a few ms), then the two
         // network calls in parallel on the pool. A failure here must never stop
         // the analysis — it just means no extra context this round.
@@ -258,27 +260,43 @@ open class ChatCaptureService : AccessibilityService() {
             } catch (e: Exception) {
                 Log.w(TAG, "context build failed: ${e.javaClass.simpleName}"); null
             }
-            main.post { overlay?.setContextInfo(ctx?.notes?.size ?: 0, ctx?.history?.size ?: 0) }
+            main.post {
+                if (snapshotIsCurrent(snapshot, pkg))
+                    overlay?.setContextInfo(ctx?.notes?.size ?: 0, ctx?.history?.size ?: 0)
+            }
 
             // Jev first, then draft from its judgment and rank. Keeping one worker
             // avoids a late judgment replacing replies from a newer stage.
             submit {
                 val judgment = client.judge(snapshot, rel, ctx)
                 if (judgment.error != null) {
-                    main.post { analyzing = false; overlay?.showError(judgment.error) }
+                    finishAnalysis(snapshot, pkg) { overlay?.showError(judgment.error) }
                 } else {
-                    main.post { overlay?.showJudgment(judgment) }
+                    main.post { if (snapshotIsCurrent(snapshot, pkg)) overlay?.showJudgment(judgment) }
                     var replyError: String? = null
                     val ranked = try { client.draftAndRank(snapshot, rel, ctx, judgment) } catch (e: Exception) {
                         replyError = e.message ?: e.javaClass.simpleName
                         emptyList()
                     }
-                    main.post {
-                        analyzing = false
-                        overlay?.showReplies(ranked, replyError) { text -> fillInput(text) }
+                    finishAnalysis(snapshot, pkg) {
+                        overlay?.showReplies(ranked, replyError) { text -> fillInput(text, snapshot, pkg) }
                     }
                 }
             }
+        }
+    }
+
+    private fun snapshotIsCurrent(snapshot: ChatSnapshot, pkg: String): Boolean {
+        val current = currentSnapshot ?: return false
+        return pkg.isNotBlank() && rootInActiveWindow?.packageName?.toString() == pkg &&
+            current.title == snapshot.title && current.signature() == snapshot.signature()
+    }
+
+    private fun finishAnalysis(snapshot: ChatSnapshot, pkg: String, display: () -> Unit) {
+        main.post {
+            analyzing = false
+            if (snapshotIsCurrent(snapshot, pkg)) display()
+            if (pendingSnapshot != null) runAnalysis()
         }
     }
 
@@ -470,54 +488,45 @@ open class ChatCaptureService : AccessibilityService() {
         }
     }
 
-    /** Fill the chat input box with the chosen reply (never sends). */
-    private fun fillInput(text: String) {
+    /** Fill only a verified, still-current chat input box (never sends). */
+    private fun fillInput(text: String, snapshot: ChatSnapshot, pkg: String) {
         submit {
-            // Fast path: SET_TEXT works when the box already has input focus and no
-            // IME composing session is active.
-            var ok = trySetText(text)
-            if (!ok) {
-                // Otherwise focus the box (pops the keyboard) and retry SET_TEXT;
-                // if the IME composing region still swallows it (WeChat), PASTE from
-                // the clipboard. The box is cleared before PASTE so a SET_TEXT that
-                // silently took (but failed verification) never gets doubled.
-                // Never clicks send.
-                val edit = rootInActiveWindow?.let { findEditable(it) }
-                if (edit != null) {
-                    edit.performAction(AccessibilityNodeInfo.ACTION_CLICK)
-                    Thread.sleep(300)
-                    ok = trySetText(text)
-                    if (!ok) {
+            val edit = verifiedInput(snapshot, pkg)
+            val before = edit?.text?.toString()
+            // Existing drafts belong to the user. Never clear or overwrite them.
+            if (edit == null || before == null || before.isNotEmpty()) {
+                copyToClipboard(text)
+                main.post { overlay?.toast("会话或输入框未确认，或已有草稿；已复制，请手动粘贴") }
+                return@submit
+            }
+            var ok = setTextRaw(edit, text)
+            Thread.sleep(150)
+            var after = verifiedInput(snapshot, pkg)?.text?.toString()
+            ok = ok && after == text
+            // A failed SET_TEXT may still have landed. Paste only when a fresh read
+            // proves the box is empty; never clear a box to make the fallback work.
+            if (!ok && after == "") {
+                val focused = verifiedInput(snapshot, pkg)
+                if (focused != null && focused.performAction(AccessibilityNodeInfo.ACTION_CLICK)) {
+                    Thread.sleep(150)
+                    if (verifiedInput(snapshot, pkg)?.text?.toString() == "") {
                         copyToClipboard(text)
-                        val focused = rootInActiveWindow?.let { findEditable(it) } ?: edit
-                        setTextRaw(focused, "")
-                        val pasted = focused.performAction(AccessibilityNodeInfo.ACTION_PASTE)
+                        focused.performAction(AccessibilityNodeInfo.ACTION_PASTE)
                         Thread.sleep(150)
-                        val after = readInput()
-                        ok = (after != null && after.contains(text)) || (pasted && after == null)
-                        Log.i(TAG, "fill: paste=$pasted readback=${after?.length ?: -1}")
+                        after = verifiedInput(snapshot, pkg)?.text?.toString()
+                        ok = after == text
                     }
                 }
             }
+            Log.i(TAG, "fill: verified=$ok readback=${after?.length ?: -1}")
             main.post {
                 if (ok) overlay?.toast("已填入，确认后自己发送")
-                else { copyToClipboard(text); overlay?.toast("已复制，长按输入框粘贴") }
+                else {
+                    copyToClipboard(text)
+                    overlay?.toast("无法确认是否填入；请检查输入框，勿重复粘贴")
+                }
             }
         }
-    }
-
-    /** Set text on the chat input box, verifying it actually took. */
-    private fun trySetText(text: String): Boolean {
-        val edit = rootInActiveWindow?.let { findEditable(it) } ?: return false
-        if (!setTextRaw(edit, text)) return false
-        // SET_TEXT can report success without filling an unfocused box; verify.
-        // Read back through refresh() — the node cache can still hold the old
-        // (empty) text right after the action, which made Feishu look like a
-        // failure and triggered a second PASTE on top.
-        Thread.sleep(150)
-        val after = readInput()
-        Log.i(TAG, "fill: setText readback=${after?.length ?: -1} want=${text.length}")
-        return after == text
     }
 
     private fun setTextRaw(edit: AccessibilityNodeInfo, text: String): Boolean {
@@ -527,24 +536,38 @@ open class ChatCaptureService : AccessibilityService() {
         return edit.performAction(AccessibilityNodeInfo.ACTION_SET_TEXT, args)
     }
 
-    /** Current text of the input box, fetched fresh (bypassing the node cache). */
-    private fun readInput(): String? {
-        val edit = rootInActiveWindow?.let { findEditable(it) } ?: return null
-        runCatching { edit.refresh() }
-        return edit.text?.toString()
+    /** Never choose a search box or an editable field in another app. */
+    private fun verifiedInput(snapshot: ChatSnapshot, pkg: String): AccessibilityNodeInfo? {
+        if (!snapshotIsCurrent(snapshot, pkg)) return null
+        val root = rootInActiveWindow ?: return null
+        val fresh = adapters[pkg]?.extract(root, resources) ?: return null
+        if (fresh.messages.isEmpty() || fresh.title != snapshot.title ||
+            fresh.signature() != snapshot.signature()) return null
+        return findEditable(root)
     }
 
     private fun findEditable(root: AccessibilityNodeInfo): AccessibilityNodeInfo? {
         val stack = ArrayDeque<AccessibilityNodeInfo>()
         stack.addLast(root)
         var guard = 0
+        var best: AccessibilityNodeInfo? = null
+        var bestBottom = -1
+        val bounds = Rect()
+        val minY = resources.displayMetrics.heightPixels * 0.35f
         while (stack.isNotEmpty() && guard < 5000) {
             guard++
             val node = stack.removeLast()
-            if (node.isEditable) return node
+            if (node.isEditable && node.isVisibleToUser) {
+                node.getBoundsInScreen(bounds)
+                if (bounds.width() >= 80 && bounds.height() >= 24 &&
+                    bounds.centerY() >= minY && bounds.bottom > bestBottom) {
+                    best = node
+                    bestBottom = bounds.bottom
+                }
+            }
             for (i in node.childCount - 1 downTo 0) node.getChild(i)?.let { stack.addLast(it) }
         }
-        return null
+        return best
     }
 
     private fun copyToClipboard(text: String) {
