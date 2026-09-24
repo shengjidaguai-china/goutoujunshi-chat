@@ -4,7 +4,7 @@
 
 # 狗头军师 Chat
 
-**聊天窗口旁的狗头军师：读屏、分析、生成回复草稿。** 这是从[狗头军师](https://github.com/shengjidaguai-china/goutoujunshi)延伸出来的独立项目。Mac 版已实现完整的核对与分析流程；Android、Windows 现有源码适配，仍需在对应设备完成构建和实测。三端都保留“用户自己决定是否发送”的原则。
+**聊天窗口旁的狗头军师：读屏、分析、生成回复草稿。** 这是从[狗头军师](https://github.com/shengjidaguai-china/goutoujunshi)延伸出来的独立项目。Mac 版已实现完整的核对与分析流程；Android 调试 APK 和 Windows 预览 ZIP 已通过自动构建，仍需在对应设备实测。三端都保留“用户自己决定是否发送”的原则。
 
 如果这套聊天副驾对你有用，可以给[项目点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)，方便以后找到，也让更多有相同需求的人看到它。
 

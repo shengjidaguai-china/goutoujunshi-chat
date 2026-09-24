@@ -4,7 +4,7 @@
 
 # Goutoujunshi Chat
 
-**Goutoujunshi beside your chat window: screen reading, analysis, and reply drafts.** This standalone project builds on [Goutoujunshi](https://github.com/shengjidaguai-china/goutoujunshi). The Mac workflow is implemented; Android and Windows source integrations are now included but still need builds and testing on those platforms. Sending remains your decision on every platform.
+**Goutoujunshi beside your chat window: screen reading, analysis, and reply drafts.** This standalone project builds on [Goutoujunshi](https://github.com/shengjidaguai-china/goutoujunshi). The Mac workflow is implemented; the Android debug APK and Windows preview ZIP now pass automated builds, but still need testing on their respective devices. Sending remains your decision on every platform.
 
 If it helps you, [Star the project](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers) so you can find it again and help others discover it.
 
