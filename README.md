@@ -10,13 +10,13 @@
 
 ## 三端预览包
 
-在 [GitHub Actions 构建页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml)打开最近一次成功运行，从页面下方的 Artifacts 下载。Android 的构建产物外层是 ZIP，解压后取得 APK；Windows 的 ZIP 需完整解压后运行其中的程序。
+直接从 [GitHub Releases 下载页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest)下载对应平台的文件。Android 下载 APK 后安装；Windows 的 ZIP 需完整解压后运行其中的程序。构建记录和历史产物也可在 [GitHub Actions 构建页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml)查看。
 
 | 平台 | 构建产物 | 当前状态 |
 | --- | --- | --- |
-| macOS | `goutoujunshi-jev-chat-mac-source` | 源码 ZIP；解压后运行 `安装依赖.command`，再运行 `离线演示.command` 或 `启动.command`。需要 Python 3.12 和 uv，尚无签名 `.app`。 |
-| Android | `goutoujunshi-jev-chat-android-debug` | 调试 APK；自动构建和单元测试通过，待 Android 真机验收。 |
-| Windows | `goutoujunshi-jev-chat-windows-preview` | 可执行目录 ZIP；自动构建通过，待 Windows 实机验收。 |
+| macOS | [`goutoujunshi-jev-chat-mac.zip`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-mac.zip) | 源码 ZIP；解压后运行 `安装依赖.command`，再运行 `离线演示.command` 或 `启动.command`。需要 Python 3.12 和 uv，尚无签名 `.app`。 |
+| Android | [`goutoujunshi-jev-chat-android-debug.apk`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-android-debug.apk) | 调试 APK；自动构建和单元测试通过，待 Android 真机验收。 |
+| Windows | [`goutoujunshi-jev-chat-windows-preview.zip`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-windows-preview.zip) | 可执行目录 ZIP；自动构建通过，待 Windows 实机验收。 |
 
 三端的功能范围目前不同：下方截图和完整的原文核对、关系档案、关系 K 线属于 Mac 版；Android 与 Windows 已接入聊天识别、Jev 判断和候选回复流程，尚未移植上述完整界面。分别查看 [Android 使用说明](integrations/jev_android/README.md) 和 [Windows 使用说明](integrations/jev_windows/README.md)。
 

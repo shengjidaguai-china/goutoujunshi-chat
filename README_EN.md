@@ -10,13 +10,13 @@ If it helps you, [Star the project](https://github.com/shengjidaguai-china/gouto
 
 ## Preview packages for three platforms
 
-Open the latest successful run on the [GitHub Actions build page](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml) and download the Artifacts at the bottom. The Android artifact is an outer ZIP containing the APK. Extract the full Windows ZIP before launching its executable.
+Download the file for your platform from [GitHub Releases](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest). Install the Android APK directly. Extract the full Windows ZIP before launching its executable. Build logs and older artifacts are also available on the [GitHub Actions build page](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml).
 
 | Platform | Artifact | Current status |
 | --- | --- | --- |
-| macOS | `goutoujunshi-jev-chat-mac-source` | Source ZIP. Run `安装依赖.command`, then `离线演示.command` or `启动.command`. Requires Python 3.12 and uv; there is no signed `.app`. |
-| Android | `goutoujunshi-jev-chat-android-debug` | Debug APK. Automated build and unit tests pass; Android device validation is pending. |
-| Windows | `goutoujunshi-jev-chat-windows-preview` | Executable-directory ZIP. Automated build passes; Windows device validation is pending. |
+| macOS | [`goutoujunshi-jev-chat-mac.zip`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-mac.zip) | Source ZIP. Run `安装依赖.command`, then `离线演示.command` or `启动.command`. Requires Python 3.12 and uv; there is no signed `.app`. |
+| Android | [`goutoujunshi-jev-chat-android-debug.apk`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-android-debug.apk) | Debug APK. Automated build and unit tests pass; Android device validation is pending. |
+| Windows | [`goutoujunshi-jev-chat-windows-preview.zip`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-windows-preview.zip) | Executable-directory ZIP. Automated build passes; Windows device validation is pending. |
 
 The screenshots and full transcript review, relationship profiles, and candlestick view below are from the Mac version. Android and Windows include chat capture, Jev judgment, and reply drafting, but those full screens have not been ported. See the [Android guide](integrations/jev_android/README.md) and [Windows guide](integrations/jev_windows/README.md).
 
