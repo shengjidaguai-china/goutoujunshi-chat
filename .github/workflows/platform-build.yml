@@ -2,6 +2,11 @@ name: Platform preview packages
 
 on:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: "Optional preview release tag, for example v0.1.0-preview"
+        required: false
+        type: string
   push:
     paths:
       - "integrations/jev_android/**"
@@ -20,6 +25,9 @@ on:
       - "PRIVACY.md"
       - "tests/test_platform_integrations.py"
       - ".github/workflows/platform-build.yml"
+
+permissions:
+  contents: write
 
 jobs:
   android:
@@ -81,3 +89,45 @@ jobs:
         with:
           name: goutoujunshi-jev-chat-mac-source
           path: dist/goutoujunshi-jev-chat-mac.zip
+
+  release:
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.release_tag != '' }}
+    needs: [android, windows, mac]
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: ${{ inputs.release_tag }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          path: release-assets
+      - name: Verify and name release files
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+-preview$ ]]
+          mkdir -p publish
+          cp release-assets/goutoujunshi-jev-chat-mac-source/goutoujunshi-jev-chat-mac.zip publish/
+          cp release-assets/goutoujunshi-jev-chat-android-debug/app-debug.apk publish/goutoujunshi-jev-chat-android-debug.apk
+          cp release-assets/goutoujunshi-jev-chat-windows-preview/goutoujunshi-jev-chat-windows-preview.zip publish/
+          test -s publish/goutoujunshi-jev-chat-mac.zip
+          test -s publish/goutoujunshi-jev-chat-android-debug.apk
+          test -s publish/goutoujunshi-jev-chat-windows-preview.zip
+          (cd publish && sha256sum *.zip *.apk > SHA256SUMS.txt)
+      - name: Publish preview release
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > release-notes.md <<'EOF'
+          ## 三端预览包 / Preview packages
+
+          - **macOS:** `goutoujunshi-jev-chat-mac.zip` — source package. Install Python 3.12 and uv, then run `安装依赖.command` and `启动.command`. This is not a signed `.app`.
+          - **Android:** `goutoujunshi-jev-chat-android-debug.apk` — debug build. Automated build and unit tests pass; physical-device validation is pending.
+          - **Windows:** `goutoujunshi-jev-chat-windows-preview.zip` — extract the complete directory before launching the executable. Automated build passes; physical-device validation is pending.
+
+          The Mac screenshots and full relationship features in the README do not yet apply to Android or Windows. Check `SHA256SUMS.txt` after downloading. See the README and PRIVACY.md for setup, feature scope, and data use.
+
+          Windows packages include PySide6-Fluent-Widgets; see `integrations/jev_windows/NOTICE` for redistribution terms.
+          EOF
+          gh release create "$RELEASE_TAG" publish/* --target "$GITHUB_SHA" --latest --title "狗头军师 Jev Chat $RELEASE_TAG" --notes-file release-notes.md
