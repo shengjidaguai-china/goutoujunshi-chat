@@ -71,6 +71,7 @@ uv pip install --python .venv/bin/python -r requirements.txt
 *图：接口配置页的离线预览。DeepSeek 与 Jev 分别保存 Key；已有值不会回显，图片里没有真实密钥。*
 
 模型、OCR、钥匙串、可选环境变量、K 线 CSV 格式和操作限制见 [Mac 使用说明](integrations/jev_mac/README.md)。
+这里非常感谢 jev-chat-jarvis项目，从该项目结合goutoujunshi而来。
 
 联系我加入升级打怪开源群：
 Email：247133278@qq.com<br>
