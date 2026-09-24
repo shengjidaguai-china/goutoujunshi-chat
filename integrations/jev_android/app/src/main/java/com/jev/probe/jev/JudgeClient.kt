@@ -30,6 +30,10 @@ class JudgeClient(private val prefs: Prefs) {
                 snapshot, relationship, ctx,
                 JevQuestions.judge()
             )
+            val required = listOf("true_intent", "danger_level", "she_needs",
+                "should_reply_now", "best_action", "tension_resolved", "literal_question")
+            if (required.any { answers.optJSONObject(it) == null })
+                throw IllegalStateException("Jev 判断结果不完整，已停止生成回复；请重试")
             Analysis(
                 trueIntent = parseChoice(answers.optJSONObject("true_intent")),
                 dangerLevel = parseScore(answers.optJSONObject("danger_level")),

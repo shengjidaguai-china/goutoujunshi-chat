@@ -59,6 +59,9 @@ def analyze(messages: list, relationship: str, model: str | None = None,
     first = ask(state, dict(JUDGE_QUESTIONS), timeout=timeout,
                 provider=jev_provider, model=jev_model)
     answers = first.get("answers") or {}
+    if not isinstance(answers, dict) or any(
+            not isinstance(answers.get(name), dict) for name in JUDGE_QUESTIONS):
+        raise JevError("Jev 判断结果不完整，已停止生成回复；请重试")
     _add_usage(usage, first.get("usage"))
     judged = True
 

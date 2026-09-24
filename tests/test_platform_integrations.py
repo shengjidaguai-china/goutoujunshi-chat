@@ -36,6 +36,14 @@ class WindowsGoutouContractTest(unittest.TestCase):
                 with self.assertRaises(JevError):
                     analyze(messages, "朋友")
 
+    def test_incomplete_judgment_does_not_draft(self):
+        messages = [("me", "周六看展吗"), ("her", "下周再说吧")]
+        with patch("integrations.jev_windows.core.engine.ask", return_value={"answers": {}}):
+            with patch("integrations.jev_windows.core.engine.draft_candidates",
+                       side_effect=AssertionError("should not draft")):
+                with self.assertRaisesRegex(JevError, "判断结果不完整"):
+                    analyze(messages, "朋友")
+
 
 if __name__ == "__main__":
     unittest.main()
