@@ -38,7 +38,7 @@ jobs:
       - run: ./gradlew :app:testDebugUnitTest :app:assembleDebug --no-daemon
       - uses: actions/upload-artifact@v4
         with:
-          name: goutoujunshi-chat-android-debug
+          name: goutoujunshi-jev-chat-android-debug
           path: integrations/jev_android/app/build/outputs/apk/debug/*.apk
 
   windows:
@@ -58,14 +58,14 @@ jobs:
       - name: Create Windows ZIP
         shell: pwsh
         run: |
-          Copy-Item README.md dist/goutoujunshi-chat-windows/README.md
-          Copy-Item LICENSE dist/goutoujunshi-chat-windows/LICENSE
-          Copy-Item NOTICE dist/goutoujunshi-chat-windows/NOTICE
-          Compress-Archive -Path dist/goutoujunshi-chat-windows -DestinationPath dist/goutoujunshi-chat-windows-preview.zip -Force
+          Copy-Item README.md dist/goutoujunshi-jev-chat-windows/README.md
+          Copy-Item LICENSE dist/goutoujunshi-jev-chat-windows/LICENSE
+          Copy-Item NOTICE dist/goutoujunshi-jev-chat-windows/NOTICE
+          Compress-Archive -Path dist/goutoujunshi-jev-chat-windows -DestinationPath dist/goutoujunshi-jev-chat-windows-preview.zip -Force
       - uses: actions/upload-artifact@v4
         with:
-          name: goutoujunshi-chat-windows-preview
-          path: integrations/jev_windows/dist/goutoujunshi-chat-windows-preview.zip
+          name: goutoujunshi-jev-chat-windows-preview
+          path: integrations/jev_windows/dist/goutoujunshi-jev-chat-windows-preview.zip
 
   mac:
     runs-on: macos-latest
@@ -79,5 +79,5 @@ jobs:
       - run: python -B scripts/package_mac.py
       - uses: actions/upload-artifact@v4
         with:
-          name: goutoujunshi-chat-mac-source
-          path: dist/goutoujunshi-chat-mac.zip
+          name: goutoujunshi-jev-chat-mac-source
+          path: dist/goutoujunshi-jev-chat-mac.zip

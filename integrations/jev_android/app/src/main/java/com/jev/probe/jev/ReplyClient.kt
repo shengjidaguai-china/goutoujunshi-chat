@@ -28,7 +28,7 @@ class ReplyClient(private val prefs: Prefs) {
         val convo = snapshot.messages.takeLast(10).joinToString("\n") {
             (if (it.side == "me") "我" else "对方") + "：" + it.text
         }
-        val sys = "你是狗头军师 Chat 的即时通讯回复助手。" + GoutouGuidance.draftRules +
+        val sys = "你是狗头军师 Jev Chat 的即时通讯回复助手。" + GoutouGuidance.draftRules +
             "只输出一个 JSON 数组，包含 1 到 3 条真正适合发送的候选；不为凑数编造承诺。" +
             "每条不超过 40 字，口语、自然、像真人在聊天软件里发消息。不要解释，直接输出 JSON 数组。"
         val mySamples = snapshot.messages.filter { it.side == "me" && it.text.length in 1..60 }

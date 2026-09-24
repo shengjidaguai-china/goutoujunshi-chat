@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 
 REM One-click local build. ASCII only: Chinese Windows cmd is GBK.
-REM Output: dist\goutoujunshi-chat-windows\goutoujunshi-chat-windows.exe
+REM Output: dist\goutoujunshi-jev-chat-windows\goutoujunshi-jev-chat-windows.exe
 
 if not exist ".venv\Scripts\python.exe" (
     echo Creating virtualenv .venv ...
@@ -16,16 +16,16 @@ python -m pip install -r requirements.txt pyinstaller || goto :fail
 
 echo Building ...
 pyinstaller --noconfirm --clean jev.spec || goto :fail
-copy /Y README.md dist\goutoujunshi-chat-windows\README.md >nul || goto :fail
-copy /Y LICENSE dist\goutoujunshi-chat-windows\LICENSE >nul || goto :fail
-copy /Y NOTICE dist\goutoujunshi-chat-windows\NOTICE >nul || goto :fail
-powershell -NoProfile -Command "Compress-Archive -Path 'dist\goutoujunshi-chat-windows' -DestinationPath 'dist\goutoujunshi-chat-windows-preview.zip' -Force" || goto :fail
+copy /Y README.md dist\goutoujunshi-jev-chat-windows\README.md >nul || goto :fail
+copy /Y LICENSE dist\goutoujunshi-jev-chat-windows\LICENSE >nul || goto :fail
+copy /Y NOTICE dist\goutoujunshi-jev-chat-windows\NOTICE >nul || goto :fail
+powershell -NoProfile -Command "Compress-Archive -Path 'dist\goutoujunshi-jev-chat-windows' -DestinationPath 'dist\goutoujunshi-jev-chat-windows-preview.zip' -Force" || goto :fail
 
 echo.
 echo Build OK.
-echo   %cd%\dist\goutoujunshi-chat-windows\goutoujunshi-chat-windows.exe
-echo   %cd%\dist\goutoujunshi-chat-windows-preview.zip
-echo Ship the whole dist\goutoujunshi-chat-windows folder: the exe needs the files next to it.
+echo   %cd%\dist\goutoujunshi-jev-chat-windows\goutoujunshi-jev-chat-windows.exe
+echo   %cd%\dist\goutoujunshi-jev-chat-windows-preview.zip
+echo Ship the whole dist\goutoujunshi-jev-chat-windows folder: the exe needs the files next to it.
 pause
 exit /b 0
 

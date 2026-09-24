@@ -617,7 +617,7 @@ class SettingsActivity : AppCompatActivity() {
         private const val SCRATCH_REPLY = "jev_probe_scratch_reply"
         private const val SCRATCH_VISION = "jev_probe_scratch_vision"
 
-        private const val PRIVACY_URL = "https://github.com/shengjidaguai-china/goutoujunshi-chat/blob/main/PRIVACY.md"
-        private const val REPO_URL = "https://github.com/shengjidaguai-china/goutoujunshi-chat"
+        private const val PRIVACY_URL = "https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/main/PRIVACY.md"
+        private const val REPO_URL = "https://github.com/shengjidaguai-china/goutoujunshi-jev-chat"
     }
 }

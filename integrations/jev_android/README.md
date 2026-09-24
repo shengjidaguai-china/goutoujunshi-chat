@@ -1,4 +1,4 @@
-# 狗头军师 Chat · Android 源码适配
+# 狗头军师 Jev Chat · Android 源码适配
 
 本目录基于 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis) 的聊天应用采集、ML Kit 中文离线 OCR、悬浮窗、Jev 判断和候选填入链路。已改为独立应用 ID `com.goutoujunshi.chat`，接入狗头军师的自然口吻、事实与推测边界、下一步和停止条件。原文与说话人仍需用户核对；对方明确要求停止联系时不生成候选，不自动发送。
 

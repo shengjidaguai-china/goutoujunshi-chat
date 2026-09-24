@@ -2,11 +2,11 @@
 
 <p align="center">简体中文 · <a href="./README_EN.md">English</a></p>
 
-# 狗头军师 Chat
+# 狗头军师 Jev Chat
 
 **聊天窗口旁的狗头军师：读屏、分析、生成回复草稿。** 这是从[狗头军师](https://github.com/shengjidaguai-china/goutoujunshi)延伸出来的独立项目。Mac 版已实现完整的核对与分析流程；Android 调试 APK 和 Windows 预览 ZIP 已通过自动构建，仍需在对应设备实测。三端都保留“用户自己决定是否发送”的原则。
 
-如果这套聊天副驾对你有用，可以给[项目点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)，方便以后找到，也让更多有相同需求的人看到它。
+如果这套聊天副驾对你有用，可以给[项目点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers)，方便以后找到，也让更多有相同需求的人看到它。
 
 ## 界面预览
 
@@ -66,7 +66,7 @@ uv pip install --python .venv/bin/python -r requirements.txt
 
 `--demo` 使用合成对话，离线展示界面，不读取微信、不调用模型。真实使用时运行 `./start.command`；`./start.command --settings` 可直接打开设置，点击「接口与模型 → 配置接口」填写 DeepSeek Key，并按需填写 TypeSafe Jev Key。打开微信后，需要给**启动程序的终端**授予 macOS「屏幕录制」权限；使用「填入」还需要「辅助功能」权限。
 
-![狗头军师 Chat 的接口配置窗口](documentation/design/provider-config-preview.png)
+![狗头军师 Jev Chat 的接口配置窗口](documentation/design/provider-config-preview.png)
 
 *图：接口配置页的离线预览。DeepSeek 与 Jev 分别保存 Key；已有值不会回显，图片里没有真实密钥。*
 

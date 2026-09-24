@@ -2,11 +2,11 @@
 
 <p align="center"><a href="./README.md">简体中文</a> · English</p>
 
-# Goutoujunshi Chat
+# Goutoujunshi Jev Chat
 
 **Goutoujunshi beside your chat window: screen reading, analysis, and reply drafts.** This standalone project builds on [Goutoujunshi](https://github.com/shengjidaguai-china/goutoujunshi). The Mac workflow is implemented; the Android debug APK and Windows preview ZIP now pass automated builds, but still need testing on their respective devices. Sending remains your decision on every platform.
 
-If it helps you, [Star the project](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers) so you can find it again and help others discover it.
+If it helps you, [Star the project](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers) so you can find it again and help others discover it.
 
 ## Screenshots
 
@@ -80,7 +80,7 @@ For models, OCR choices, Keychain and environment configuration, CSV format, and
 | Android | Debug APK; device validation pending | Upstream Jev Accessibility capture, offline ML Kit OCR, system overlay | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
 | Windows | Executable-directory ZIP; Windows device validation pending | Upstream Jev WGC capture, RapidOCR, floating window | Judge before drafting, natural tone, visible evidence, unknowns, next steps, stop conditions, no draft after an explicit no-contact request |
 
-The [GitHub Actions platform workflow](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/platform-build.yml) produces a debug Android APK, a Windows preview ZIP, and a Mac source ZIP. After extracting the Mac ZIP, run `安装依赖.command`, then `离线演示.command` or `启动.command`. You can also create it locally with `python3 scripts/package_mac.py`. See the [Android guide](integrations/jev_android/README.md) and [Windows guide](integrations/jev_windows/README.md) (Chinese). The Mac transcript-review screen, relationship candlesticks, and full profile interface have not yet been ported to the other platforms.
+The [GitHub Actions platform workflow](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml) produces a debug Android APK, a Windows preview ZIP, and a Mac source ZIP. After extracting the Mac ZIP, run `安装依赖.command`, then `离线演示.command` or `启动.command`. You can also create it locally with `python3 scripts/package_mac.py`. See the [Android guide](integrations/jev_android/README.md) and [Windows guide](integrations/jev_windows/README.md) (Chinese). The Mac transcript-review screen, relationship candlesticks, and full profile interface have not yet been ported to the other platforms.
 
 ## Verification and status
 

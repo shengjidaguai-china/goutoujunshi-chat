@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">狗头军师 Chat</string>
+    <string name="app_name">狗头军师 Jev Chat</string>
     <string name="a11y_desc_disguised">读取当前聊天窗口文字，用于生成回复建议。不会自动发送消息。</string>
 </resources>

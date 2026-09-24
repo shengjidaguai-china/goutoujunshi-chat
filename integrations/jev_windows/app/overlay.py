@@ -178,7 +178,7 @@ class Overlay:
         self._shown = ""  # 界面上正在看的会话（浏览时和上面不一样）
         self.win = _MainWindow(self._relayout)
         self.win.setObjectName("assistantWindow")
-        self.win.setWindowTitle("狗头军师 Chat · Windows")
+        self.win.setWindowTitle("狗头军师 Jev Chat · Windows")
         self.win.setWindowFlags(Qt.Window | Qt.FramelessWindowHint | Qt.WindowStaysOnTopHint)
         self.win.setStyleSheet(
             "QWidget#assistantWindow { background: #f5f7f6; border: 1px solid #dce3de; border-radius: 14px; }"
@@ -196,7 +196,7 @@ class Overlay:
         name.setFixedWidth(52)
         name.setAttribute(Qt.WA_TransparentForMouseEvents)
         title.addWidget(name)
-        self.subtitle = _label("狗头军师 Chat", 12, _MUTED)
+        self.subtitle = _label("狗头军师 Jev Chat", 12, _MUTED)
         self.subtitle.setAttribute(Qt.WA_TransparentForMouseEvents)
         title.addWidget(self.subtitle, 1)
         self.captureSwitch = SwitchButton(header)

@@ -4,7 +4,7 @@ onedir 不是 onefile：PySide6 + onnxruntime 打出来 ~150MB，onefile 每次�
 只在 Windows 上跑，下面的 collect_all 也只认 Windows 上装好的那几个包。"""
 from PyInstaller.utils.hooks import collect_all
 
-NAME = "goutoujunshi-chat-windows"
+NAME = "goutoujunshi-jev-chat-windows"
 
 hiddenimports = [
     # spawn 出来的采集子进程按名字 import app.worker，再顺着它拉 capture/ocr；

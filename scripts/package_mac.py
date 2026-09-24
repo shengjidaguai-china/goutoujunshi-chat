@@ -9,7 +9,7 @@ from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile, ZipInfo
 
 ROOT = Path(__file__).resolve().parents[1]
-PREFIX = "goutoujunshi-chat-mac"
+PREFIX = "goutoujunshi-jev-chat-mac"
 FILES = ("README.md", "PRIVACY.md", "LICENSE", "SKILL.md", "scripts/memory_store.py")
 DIRS = ("integrations/jev_mac", "references", "examples/relationship_cases", "assets", "agents", "documentation")
 EXCLUDED = {".venv", "__pycache__", ".DS_Store", "settings.local.json", "settings.local.tmp"}
@@ -35,7 +35,7 @@ set -eu
 cd "$(dirname "$0")/integrations/jev_mac"
 exec ./start.command --demo
 """
-INTRO = """# 狗头军师 Chat · Mac 预览包
+INTRO = """# 狗头军师 Jev Chat · Mac 预览包
 
 这是 macOS 源码预览包，包含完整的狗头军师规则、关系案例和桌面悬浮窗。它不是签名或公证的 .app，首次使用需要安装 Python 3.12 与 uv。
 
@@ -83,7 +83,7 @@ def build(output: Path) -> Path:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=ROOT / "dist" / "goutoujunshi-chat-mac.zip")
+    parser.add_argument("--output", type=Path, default=ROOT / "dist" / "goutoujunshi-jev-chat-mac.zip")
     args = parser.parse_args()
     result = build(args.output)
     print(f"{result} ({result.stat().st_size} bytes)")
