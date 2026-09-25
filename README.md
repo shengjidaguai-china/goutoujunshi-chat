@@ -1,30 +1,23 @@
-<!-- README_SYNC: source=working-tree; updated=2026-09-24 -->
+<!-- README_SYNC: source=working-tree; updated=2026-09-25 -->
 
 <p align="center">简体中文 · <a href="./README_EN.md">English</a></p>
 
 # 狗头军师 Jev Chat
 
-**聊天窗口旁的狗头军师：读屏、分析、生成回复草稿。** 这是从[狗头军师](https://github.com/shengjidaguai-china/goutoujunshi)延伸出来的独立项目。Mac 版已实现完整的核对与分析流程；Android 调试 APK 和 Windows 预览 ZIP 已通过自动构建，仍需在对应设备实测。三端都保留“用户自己决定是否发送”的原则。
+**聊天窗口旁的狗头军师：读屏、分析、生成回复草稿。** 这是从[狗头军师](https://github.com/shengjidaguai-china/goutoujunshi)延伸出来的独立项目。目前公开提供 Mac 源码预览包和 Windows 预览 ZIP；Windows 仍需实机测试。发送始终由用户决定。
 
 如果这套聊天副驾对你有用，可以给[项目点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers)，方便以后找到，也让更多有相同需求的人看到它。
 
-## 三端预览包
+## Mac 与 Windows 预览包
 
-直接从 [GitHub Releases 下载页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest)下载对应平台的文件。Android 下载 APK 后安装；Windows 的 ZIP 需完整解压后运行其中的程序。构建记录和历史产物也可在 [GitHub Actions 构建页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml)查看。
+直接从 [GitHub Releases 下载页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest)下载对应平台的文件。Windows 的 ZIP 需完整解压后运行其中的程序。构建记录可在 [GitHub Actions 构建页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml)查看。
 
 | 平台 | 构建产物 | 当前状态 |
 | --- | --- | --- |
 | macOS | [`goutoujunshi-jev-chat-mac.zip`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-mac.zip) | 源码 ZIP；解压后运行 `安装依赖.command`，再运行 `离线演示.command` 或 `启动.command`。需要 Python 3.12 和 uv，尚无签名 `.app`。 |
-| Android | [`goutoujunshi-jev-chat-android-debug.apk`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-android-debug.apk) | 调试 APK；自动构建和单元测试通过，待 Android 真机验收。 |
 | Windows | [`goutoujunshi-jev-chat-windows-preview.zip`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-windows-preview.zip) | 可执行目录 ZIP；自动构建通过，待 Windows 实机验收。 |
 
-三端的功能范围目前不同：下方截图和完整的原文核对、关系档案、关系 K 线属于 Mac 版；Android 与 Windows 已接入聊天识别、Jev 判断和候选回复流程，尚未移植上述完整界面。分别查看 [Android 使用说明](integrations/jev_android/README.md) 和 [Windows 使用说明](integrations/jev_windows/README.md)。
-
-### Android：安装 APK
-
-适用于 Android 11 及以上。下载调试 APK 并在手机上打开安装；首次启动进入「设置」，分别填写 **判断接口（Jev）** 和**回复生成接口**的地址、模型及 Key。两项接口属于不同服务时，需要分别填写对应的 Key。
-
-回到首页，按提示开启「无障碍权限」与「悬浮窗权限」，再点「助手已关闭 · 点击开启」。打开自己的聊天窗口，通过悬浮球读取当前对话、查看判断和候选回复；核对说话人及文字后，再选择复制或填入草稿。发送仍由你手动完成。控件文字无法读取时，可在悬浮球菜单点「截屏识别一次」，由手机上的 ML Kit 做本地 OCR。此包尚待 Android 真机验收，遇到识别或填入不准时，请先核对草稿。
+两端的功能范围目前不同：下方截图和完整的原文核对、关系档案、关系 K 线属于 Mac 版；Windows 已接入聊天识别、Jev 判断和候选回复流程，尚未移植上述完整界面。详见 [Windows 使用说明](integrations/jev_windows/README.md)。Android 源码暂留仓库供后续适配，当前不提供 APK。
 
 ### Windows：解压 ZIP
 
@@ -106,14 +99,14 @@ uv pip install --python .venv/bin/python -r requirements.txt
 
 ## 自检与使用边界
 
-2026 年 9 月 24 日自检：79 项 Python 测试通过；三端自动构建通过；Mac ZIP 已实际解压、安装依赖并启动离线演示。可以在本地复查：
+2026 年 9 月 24 日自检：79 项 Python 测试通过；Mac 与 Windows 自动构建通过；Mac ZIP 已实际解压、安装依赖并启动离线演示。可以在本地复查：
 
 ```bash
 python3 -B scripts/validate_skill.py
 python3 -B -m unittest discover -s tests -q
 ```
 
-这些是预览包。Mac 的真实微信读屏、模型接口与辅助功能填入没有在本轮离线自检中重复验证；Android 和 Windows 的聊天识别、悬浮窗及填入仍需在对应设备与微信版本上验收。判断结果缺失时会停止生成回复；Android 排序失败时保留候选并标记排序待定。Windows 的填入依赖窗口坐标，虽会检查当前会话和前台窗口，仍无法读回验证输入控件；不确定时可复制候选后手动粘贴。云端识图与分析会将相关内容发送给所配置的服务，详见[数据使用说明](PRIVACY.md)。
+这些是预览包。Mac 的真实微信读屏、模型接口与辅助功能填入没有在本轮离线自检中重复验证；Windows 的聊天识别、悬浮窗及填入仍需在对应设备与微信版本上验收。判断结果缺失时会停止生成回复。Windows 的填入依赖窗口坐标，虽会检查当前会话和前台窗口，仍无法读回验证输入控件；不确定时可复制候选后手动粘贴。云端识图与分析会将相关内容发送给所配置的服务，详见[数据使用说明](PRIVACY.md)。
 
 仓库主体采用 [MIT 许可证](LICENSE)。Mac 窗口模块参考 [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac)，保留其 [MIT 说明](integrations/jev_mac/vendor/LICENSE)；Android 与 Windows 分别参考 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis) 和 [Jev Windows](https://github.com/jev-chat/jev-chat-windows)，第三方分发注意事项见 [Windows NOTICE](integrations/jev_windows/NOTICE)。
 
