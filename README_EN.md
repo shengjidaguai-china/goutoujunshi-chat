@@ -20,6 +20,24 @@ Download the file for your platform from [GitHub Releases](https://github.com/sh
 
 The screenshots and full transcript review, relationship profiles, and candlestick view below are from the Mac version. Android and Windows include chat capture, Jev judgment, and reply drafting, but those full screens have not been ported. See the [Android guide](integrations/jev_android/README.md) and [Windows guide](integrations/jev_windows/README.md).
 
+### Android: install the APK
+
+Requires Android 11 or newer. Download and install the debug APK. On first launch, open Settings and configure the **Jev judgment** and **reply generation** endpoints, models, and keys separately. Different services need their own keys.
+
+Back on the home screen, grant Accessibility and overlay permissions, then tap the assistant switch to turn it on. Open your chat and use the floating bubble to capture the current conversation, inspect the judgment and reply drafts, and verify the speakers and text before copying or filling a draft. You press Send yourself. If the app cannot read the chat controls, choose “Capture screenshot once” from the bubble menu for local ML Kit OCR. This build still needs validation on an Android device, so check any recognized text or filled draft carefully.
+
+### Windows: extract the ZIP
+
+Requires Windows 10 version 1903 or later, or Windows 11, with WeChat for Windows 4.x. Download the preview ZIP, **extract the entire archive**, open the `goutoujunshi-jev-chat-windows` folder, and run `goutoujunshi-jev-chat-windows.exe`. The packaged build does not require a separate Python installation.
+
+In Settings, configure the **Jev judgment** and **reply generation** endpoints separately. Open the intended WeChat conversation and keep the window visible, then use the overlay to capture and analyze it. You can copy a candidate or fill a draft. Filling depends on window coordinates; verify the conversation, recipient, and draft before sending it yourself. This build still needs Windows device validation. See the [Windows guide](integrations/jev_windows/README.md) for running from source.
+
+### macOS: run the source preview
+
+Install Python 3.12 and [`uv`](https://docs.astral.sh/uv/), then download and extract the Mac ZIP. Run `安装依赖.command`, followed by `离线演示.command` to check that the interface opens. Run `启动.command` for normal use. In “Settings → Interfaces and models → Configure interfaces,” save a **DeepSeek key** and, if you want Jev strategy judgment, a separate **TypeSafe Jev key**.
+
+Grant the **terminal that launches the app** Screen Recording permission in macOS Privacy & Security. Filling a chat draft also requires Accessibility permission. Open the intended conversation, choose “Read conversation” from the floating bubble, verify the recognized transcript and speakers, and confirm analysis. This ZIP is a source preview, not a signed `.app`. More commands and OCR options are in [Install and run](#install-and-run) below.
+
 ## Screenshots
 
 These screenshots show the Mac version. Synthetic demo data is labeled separately from live captures.
