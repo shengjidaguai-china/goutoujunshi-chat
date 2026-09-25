@@ -1,30 +1,23 @@
-<!-- README_SYNC: source=working-tree; updated=2026-09-24 -->
+<!-- README_SYNC: source=working-tree; updated=2026-09-25 -->
 
 <p align="center"><a href="./README.md">简体中文</a> · English</p>
 
 # Goutoujunshi Jev Chat
 
-**Goutoujunshi beside your chat window: screen reading, analysis, and reply drafts.** This standalone project builds on [Goutoujunshi](https://github.com/shengjidaguai-china/goutoujunshi). The Mac workflow is implemented; the Android debug APK and Windows preview ZIP now pass automated builds, but still need testing on their respective devices. Sending remains your decision on every platform.
+**Goutoujunshi beside your chat window: screen reading, analysis, and reply drafts.** This standalone project builds on [Goutoujunshi](https://github.com/shengjidaguai-china/goutoujunshi). The public downloads are a Mac source preview and a Windows preview ZIP. Windows still needs device-level validation. You decide whether to send every draft.
 
 If it helps you, [Star the project](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers) so you can find it again and help others discover it.
 
-## Preview packages for three platforms
+## Mac and Windows preview packages
 
-Download the file for your platform from [GitHub Releases](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest). Install the Android APK directly. Extract the full Windows ZIP before launching its executable. Build logs and older artifacts are also available on the [GitHub Actions build page](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml).
+Download the file for your platform from [GitHub Releases](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest). Extract the full Windows ZIP before launching its executable. Build logs are available on the [GitHub Actions build page](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml).
 
 | Platform | Artifact | Current status |
 | --- | --- | --- |
 | macOS | [`goutoujunshi-jev-chat-mac.zip`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-mac.zip) | Source ZIP. Run `安装依赖.command`, then `离线演示.command` or `启动.command`. Requires Python 3.12 and uv; there is no signed `.app`. |
-| Android | [`goutoujunshi-jev-chat-android-debug.apk`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-android-debug.apk) | Debug APK. Automated build and unit tests pass; Android device validation is pending. |
 | Windows | [`goutoujunshi-jev-chat-windows-preview.zip`](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-windows-preview.zip) | Executable-directory ZIP. Automated build passes; Windows device validation is pending. |
 
-The screenshots and full transcript review, relationship profiles, and candlestick view below are from the Mac version. Android and Windows include chat capture, Jev judgment, and reply drafting, but those full screens have not been ported. See the [Android guide](integrations/jev_android/README.md) and [Windows guide](integrations/jev_windows/README.md).
-
-### Android: install the APK
-
-Requires Android 11 or newer. Download and install the debug APK. On first launch, open Settings and configure the **Jev judgment** and **reply generation** endpoints, models, and keys separately. Different services need their own keys.
-
-Back on the home screen, grant Accessibility and overlay permissions, then tap the assistant switch to turn it on. Open your chat and use the floating bubble to capture the current conversation, inspect the judgment and reply drafts, and verify the speakers and text before copying or filling a draft. You press Send yourself. If the app cannot read the chat controls, choose “Capture screenshot once” from the bubble menu for local ML Kit OCR. This build still needs validation on an Android device, so check any recognized text or filled draft carefully.
+The screenshots and full transcript review, relationship profiles, and candlestick view below are from the Mac version. Windows includes chat capture, Jev judgment, and reply drafting, but those full screens have not been ported. See the [Windows guide](integrations/jev_windows/README.md). Android source remains in the repository for future work; no APK is currently offered.
 
 ### Windows: extract the ZIP
 
@@ -106,13 +99,13 @@ For models, OCR choices, Keychain and environment configuration, CSV format, and
 
 ## Verification and status
 
-As checked on September 24, 2026: 79 Python tests passed; all three automated platform builds passed; and the Mac ZIP was extracted, its dependencies installed, and its offline demo launched. To repeat the local checks:
+As checked on September 24, 2026: 79 Python tests passed; the Mac and Windows automated builds passed; and the Mac ZIP was extracted, its dependencies installed, and its offline demo launched. To repeat the local checks:
 
 ```bash
 python3 -B scripts/validate_skill.py
 python3 -B -m unittest discover -s tests -q
 ```
 
-These are **preview builds**. Live WeChat capture, model requests, and Accessibility filling on Mac were not repeated in this offline check. Android and Windows still need device-level checks of capture, overlay, and filling against actual chat app versions. An incomplete Jev judgment stops reply drafting; Android retains drafts with a “ranking pending” label if ranking fails. Windows filling uses window coordinates: it checks the current chat and foreground window, but cannot read back the input control. Copy and paste manually when the target is uncertain. Cloud image recognition and analysis send relevant content to the configured services. See the [data-use notice](PRIVACY.md).
+These are **preview builds**. Live WeChat capture, model requests, and Accessibility filling on Mac were not repeated in this offline check. Windows still needs device-level checks of capture, overlay, and filling against actual chat app versions. An incomplete Jev judgment stops reply drafting. Windows filling uses window coordinates: it checks the current chat and foreground window, but cannot read back the input control. Copy and paste manually when the target is uncertain. Cloud image recognition and analysis send relevant content to the configured services. See the [data-use notice](PRIVACY.md).
 
 The repository bundles Goutoujunshi's behavior rules and selected knowledge. Its original code uses the [MIT License](LICENSE). Mac window modules are adapted from [jev-chat-jarvis-mac](https://github.com/jev-chat/jev-chat-jarvis-mac), with its MIT notice in [vendor/LICENSE](integrations/jev_mac/vendor/LICENSE). Android sources come from [Jev Android](https://github.com/jev-chat/jev-chat-jarvis), and Windows sources from [Jev Windows](https://github.com/jev-chat/jev-chat-windows); both retain their LICENSE and NOTICE in their directories. See the [Windows NOTICE](integrations/jev_windows/NOTICE) for the PySide6-Fluent-Widgets distribution license.
