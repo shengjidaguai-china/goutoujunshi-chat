@@ -28,12 +28,12 @@ print '依赖安装完成。双击「启动.command」打开狗头军师。'
 START = """#!/bin/zsh
 set -eu
 cd "$(dirname "$0")/integrations/jev_mac"
-exec ./start.command "$@"
+exec /bin/zsh ./start.command "$@"
 """
 DEMO = """#!/bin/zsh
 set -eu
 cd "$(dirname "$0")/integrations/jev_mac"
-exec ./start.command --demo
+exec /bin/zsh ./start.command --demo
 """
 INTRO = """# 狗头军师 Jev Chat · Mac 预览包
 
