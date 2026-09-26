@@ -283,7 +283,7 @@ class SettingsActivity : AppCompatActivity() {
         // --- OCR 兜底（B 阶段）---
         val ocrFallbackRow = toggleRow("树读不到正文时用 OCR 兜底", prefs.ocrFallback)
         card2.addView(ocrFallbackRow)
-        card2.addView(text("飞书正文是画上去的、微信伪装失效时也读不到，这时截一次屏本地识别（不上传）。", 11f, sub))
+        card2.addView(text("可见聊天画面的文字可用本地 OCR 识别；当前 Android 预览版无法截取微信聊天画面，暂不支持微信。", 11f, sub))
         val ocrAutoRow = toggleRow("OCR 模式自动分析", prefs.ocrAutoAnalyze)
         card2.addView(ocrAutoRow)
         card2.addView(text("关闭时 OCR 认完只亮悬浮球，点一下再分析。", 11f, sub))

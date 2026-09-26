@@ -43,7 +43,7 @@ open class ChatCaptureService : AccessibilityService() {
     private val worker = Executors.newFixedThreadPool(2)
 
     /** Adapted chat apps, keyed by package name. */
-    private val adapters = listOf(WeChatAdapter(), QQAdapter(), XAdapter(), FeishuAdapter()).associateBy { it.pkg }
+    private val adapters = listOf(QQAdapter(), XAdapter(), FeishuAdapter()).associateBy { it.pkg }
 
     /** Submit to the worker, ignoring rejection after the service is torn down
      *  (a stale overlay callback must never crash the process). */
@@ -141,6 +141,7 @@ open class ChatCaptureService : AccessibilityService() {
             if (fg != null && fg !in adapters) {
                 foregroundPkg = fg
                 val drop = fg == packageName ||
+                    fg == WECHAT_PACKAGE ||
                     fg.contains("launcher", ignoreCase = true) ||
                     fg == "com.miui.home" ||
                     fg == "com.android.systemui"
@@ -317,6 +318,10 @@ open class ChatCaptureService : AccessibilityService() {
     private fun ocrCaptureManual() {
         val root = rootInActiveWindow
         val pkg = root?.packageName?.toString() ?: foregroundPkg ?: activePkg ?: ""
+        if (pkg == WECHAT_PACKAGE) {
+            overlay?.toast("当前 Android 版无法截取微信聊天画面，暂不支持微信")
+            return
+        }
         // Top bar text, if this app has one we can read; else the first OCR line.
         val title = root?.let {
             findTitleInActionBar(it, Int.MAX_VALUE, resources.displayMetrics.widthPixels, resources, 0.15, 0.85)
@@ -597,6 +602,7 @@ open class ChatCaptureService : AccessibilityService() {
 
     companion object {
         private const val TAG = "JEVASSIST"
+        private const val WECHAT_PACKAGE = "com.tencent.mm"
 
         /** Whole-screen OCR keeps the middle: no action bar, no input area. */
         private const val TOP_CROP = 0.12f

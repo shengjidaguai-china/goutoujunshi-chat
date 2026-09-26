@@ -64,8 +64,10 @@ class MainActivity : AppCompatActivity() {
         container.removeAllViews()
 
         container.addView(text("狗头军师 Jev Chat", 24f, ink, bold = true))
-        container.addView(text("在聊天 App 旁读对方消息（已支持微信、QQ、X、飞书），给出判断和候选回复。发送始终由你手动点。",
+        container.addView(text("在聊天 App 旁读取可见消息，给出判断和候选回复。发送始终由你手动点。",
             13f, sub).apply { setPadding(0, dp(6), 0, dp(16)) })
+        container.addView(text("当前 Android 预览版暂不支持微信：无法截取微信聊天画面。QQ、X、飞书等路径仍需实机验证。",
+            13f, red, bold = true).apply { setPadding(0, 0, 0, dp(12)) })
 
         val a11y = isA11yEnabled()
         val overlay = Settings.canDrawOverlays(this)
