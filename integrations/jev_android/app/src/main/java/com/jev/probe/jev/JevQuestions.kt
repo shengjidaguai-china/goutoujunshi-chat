@@ -202,12 +202,12 @@ object JevQuestions {
         return state
     }
 
-    /** The best_reply ranking question over exactly 3 candidates (Chinese text kept). */
+    /** The best_reply ranking question over two or three candidates (Chinese text kept). */
     fun rankQuestion(candidates: List<String>): JSONObject {
-        require(candidates.size == 3) { "rankQuestion expects exactly 3 candidates" }
+        require(candidates.size in 2..3) { "rankQuestion expects 2 or 3 candidates" }
         val keys = listOf("reply_a", "reply_b", "reply_c")
         val criteria = JSONObject()
-        keys.forEachIndexed { i, k -> criteria.put(k, candidates[i]) }
+        candidates.forEachIndexed { i, candidate -> criteria.put(keys[i], candidate) }
         val q = JSONObject().apply {
             put("type", "choice")
             put("instructions",

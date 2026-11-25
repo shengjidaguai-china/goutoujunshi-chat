@@ -6,14 +6,14 @@
 
 <p align="center"><strong>聊天卡住时，帮你看清对话、理清下一步，写出更像自己的回复。</strong></p>
 
-<p align="center">从<a href="https://github.com/shengjidaguai-china/goutoujunshi">狗头军师</a>延伸而来的聊天助手：读取可见对话或截图，核对后分析，再生成回复草稿。提供桌面悬浮窗、Android 悬浮助手和 iOS 键盘，发送始终由你决定。</p>
+<p align="center">从<a href="https://github.com/shengjidaguai-china/goutoujunshi">狗头军师</a>延伸而来的聊天助手：读取可见对话或截图，核对后分析，再生成回复草稿。提供桌面悬浮窗、Android 悬浮助手与键盘，以及 iOS 键盘，发送始终由你决定。</p>
 
-<p align="center">觉得有用，可以<a href="https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers">点一个 Star</a>，方便下次找到，也帮助更多人发现。</p>
+<p align="center">觉得有用，可以<a href="https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers">点一个 Star</a>，方便下次找到，也帮助更多人发现。</p>
 
 <p align="center">
-  <a href="https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers"><img src="https://img.shields.io/github/stars/shengjidaguai-china/goutoujunshi-jev-chat?style=for-the-badge&amp;labelColor=263D35&amp;color=52796F&amp;logo=github&amp;logoColor=white" alt="Stars" height="24"></a>
-  <a href="https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases"><img src="https://img.shields.io/github/v/release/shengjidaguai-china/goutoujunshi-jev-chat?include_prereleases&amp;style=for-the-badge&amp;labelColor=263D35&amp;color=52796F&amp;logo=github&amp;logoColor=white" alt="Release" height="24"></a>
-  <a href="https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/shengjidaguai-china/goutoujunshi-jev-chat/validate.yml?style=for-the-badge&amp;labelColor=263D35&amp;color=52796F&amp;logo=githubactions&amp;logoColor=white&amp;label=checks" alt="Checks" height="24"></a>
+  <a href="https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers"><img src="https://img.shields.io/github/stars/shengjidaguai-china/goutoujunshi-chat?style=for-the-badge&amp;labelColor=263D35&amp;color=52796F&amp;logo=github&amp;logoColor=white" alt="Stars" height="24"></a>
+  <a href="https://github.com/shengjidaguai-china/goutoujunshi-chat/releases"><img src="https://img.shields.io/github/v/release/shengjidaguai-china/goutoujunshi-chat?include_prereleases&amp;style=for-the-badge&amp;labelColor=263D35&amp;color=52796F&amp;logo=github&amp;logoColor=white" alt="Release" height="24"></a>
+  <a href="https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/validate.yml"><img src="https://img.shields.io/github/actions/workflow/status/shengjidaguai-china/goutoujunshi-chat/validate.yml?style=for-the-badge&amp;labelColor=263D35&amp;color=52796F&amp;logo=githubactions&amp;logoColor=white&amp;label=checks" alt="Checks" height="24"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-52796F?style=for-the-badge&amp;labelColor=263D35&amp;color=52796F" alt="License: MIT" height="24"></a>
 </p>
 
@@ -45,23 +45,23 @@
 
 | 平台 | 获取与安装 | 当前支持与限制 |
 | --- | --- | --- |
-| **macOS** | [源码预览 ZIP](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-mac.zip) · [使用说明](integrations/jev_mac/README.md) | 微信读屏与草稿填入；需要 Python 3.12、uv，暂无签名 `.app`。解压后依次运行 `安装依赖.command`、`离线演示.command`、`启动.command`。 |
-| **Windows** | [预览 ZIP](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-windows-preview.zip) · [使用说明](integrations/jev_windows/README.md) | Windows 10 1903+ / 11，微信 4.x；完整解压后运行 `.exe`。**QQNT 9.x 支持需使用新版源码或下方 Actions 构建**。 |
-| **Android** | [调试 APK](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest/download/goutoujunshi-jev-chat-android-debug.apk) · [图文教程](documentation/guides/android-deepseek/README.md) | Android 11+；Soul 等应用可走手动截图流程，需按设备验证。**暂不支持微信**。 |
+| **macOS** | [源码预览 ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-mac.zip) · [使用说明](integrations/jev_mac/README.md) | 微信读屏与草稿填入；需要 Python 3.12、uv，暂无签名 `.app`。解压后依次运行 `安装依赖.command`、`离线演示.command`、`启动.command`。 |
+| **Windows** | [预览 ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-windows-preview.zip) · [使用说明](integrations/jev_windows/README.md) | Windows 10 1903+ / 11，微信 4.x；完整解压后运行 `.exe`。**QQNT 9.x 支持需使用新版源码或下方 Actions 构建**。 |
+| **Android** | [调试 APK](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-android-debug.apk) · [图文教程](documentation/guides/android-deepseek/README.md) · [键盘源码与安装](integrations/jev_android/README.md#android-系统键盘019-keyboard-preview) | Android 11+；Soul 等应用可走手动截图流程，需按设备验证。**暂不支持微信**。 |
 | **iOS** | [中文安装说明](integrations/jev_ios/README.md) · [English guide](integrations/jev_ios/README_EN.md) | iOS 16+；需在 Mac 上用 Xcode 编译、签名。支持本地拼音打字、截图识别与回复填入；暂无公开 IPA、TestFlight 或 App Store 下载。 |
 
-Windows QQ 仅适配 QQNT 主面板内嵌单聊，以浅色皮肤、100% 缩放为基准；群聊与独立聊天窗口暂不支持。贡献者报告已在 Windows 10 上验证识别与填入。请从 [Actions 最新成功构建](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml)下载对应 Windows Artifacts，或按使用说明运行源码；Release ZIP 不随源码更新自动替换。
+Windows QQ 仅适配 QQNT 主面板内嵌单聊，以浅色皮肤、100% 缩放为基准；群聊与独立聊天窗口暂不支持。贡献者报告已在 Windows 10 上验证识别与填入。请从 [Actions 最新成功构建](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/platform-build.yml)下载对应 Windows Artifacts，或按使用说明运行源码；Release ZIP 不随源码更新自动替换。
 
-版本说明与文件校验值见 [Releases](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest)。Android 调试包若签名不一致，需要卸载旧版再安装，卸载会清除本地数据。
+版本说明与文件校验值见 [Releases](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest)。Android 调试包若签名不一致，需要卸载旧版再安装，卸载会清除本地数据。
 
 ## 开始一轮对话
 
 1. **配置模型**：在设置中选择策略判断与回复服务，填写自己的 API Key。策略支持 Jev 或 DeepSeek，回复可用 DeepSeek 或 OpenRouter；具体选项见各平台说明。
-2. **读取对话**：桌面端保持目标聊天窗口可见；Android 使用悬浮球截图入口；iOS 导入截图、粘贴文字或使用截图快捷指令。
+2. **读取对话**：桌面端保持目标聊天窗口可见；Android 可用悬浮球截图，键盘版也可从「军师」截图或导入图片；iOS 导入截图、粘贴文字或使用截图快捷指令。
 3. **核对并分析**：确认识别文字、「我／对方」、关系阶段和目标，再提交分析。
 4. **选择并发送**：查看建议与候选，按需改写口吻；复制或填入草稿，核对收件人和内容后自行发送。
 
-**权限与数据：** Mac 读屏需给启动终端授予「屏幕录制」权限，填入需「辅助功能」权限；Android 需按提示开启无障碍与悬浮窗；iOS 键盘联网需允许完全访问。使用本地 OCR 时，文字识别在设备上完成；选择云端识图会上传截图，发起分析会把对话文字与必要背景发送给所选模型服务，并可能产生费用。各端保存方式见[数据使用说明](PRIVACY.md)。
+**权限与数据：** Mac 读屏需给启动终端授予「屏幕录制」权限，填入需「辅助功能」权限；Android 悬浮助手需要无障碍和悬浮窗权限，系统键盘可独立启用；iOS 键盘联网需允许完全访问。使用本地 OCR 时，文字识别在设备上完成；选择云端识图会上传截图，发起分析会把对话文字与必要背景发送给所选模型服务，并可能产生费用。各端保存方式见[数据使用说明](PRIVACY.md)。
 
 Windows 填入依赖窗口位置，无法读回验证输入控件；iOS 键盘无法自动核实收件人。填入前请确认当前会话，不确定时复制后手动粘贴。
 
@@ -70,8 +70,8 @@ Windows 填入依赖窗口位置，无法读回验证输入控件；iOS 键盘�
 Mac 源码运行需要 Python 3.12 和 [uv](https://docs.astral.sh/uv/)：
 
 ```bash
-git clone https://github.com/shengjidaguai-china/goutoujunshi-jev-chat.git
-cd goutoujunshi-jev-chat/integrations/jev_mac
+git clone https://github.com/shengjidaguai-china/goutoujunshi-chat.git
+cd goutoujunshi-chat/integrations/jev_mac
 uv venv --python 3.12 .venv
 uv pip install --python .venv/bin/python -r requirements.txt
 ./start.command --demo
@@ -92,10 +92,10 @@ python3 -B -m unittest discover -s tests -q
 
 ## 贡献与致谢
 
-- [@RayWangQvQ（在7楼）](https://github.com/RayWangQvQ)：[PR #1](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/pull/1)，修复 Android 原文核对与焦点恢复流程，并补充测试。
-- [@wstaery](https://github.com/wstaery)：[PR #2](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/pull/2)，贡献 Windows QQNT 适配、聊天记录累计与采集稳定性改进及测试。
+- [@RayWangQvQ（在7楼）](https://github.com/RayWangQvQ)：[PR #1](https://github.com/shengjidaguai-china/goutoujunshi-chat/pull/1)，修复 Android 原文核对与焦点恢复流程，并补充测试。
+- [@wstaery](https://github.com/wstaery)：[PR #2](https://github.com/shengjidaguai-china/goutoujunshi-chat/pull/2)，贡献 Windows QQNT 适配、聊天记录累计与采集稳定性改进及测试。
 - 感谢 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis)、[Jev Mac](https://github.com/jev-chat/jev-chat-jarvis-mac) 与 [Jev Windows](https://github.com/jev-chat/jev-chat-windows) 提供的基础实现。
 
 仓库主体采用 [MIT 许可证](LICENSE)。第三方组件沿用各自许可，详见 [Mac LICENSE](integrations/jev_mac/vendor/LICENSE)、[Android NOTICE](integrations/jev_android/NOTICE) 与 [Windows NOTICE](integrations/jev_windows/NOTICE)。
 
-欢迎[提交问题或建议](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/issues)，也欢迎 [Star 收藏](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers)。加入升级打怪开源群：Email `247133278@qq.com` · WeChat `loonges` · QQ `247133278`。
+欢迎[提交问题或建议](https://github.com/shengjidaguai-china/goutoujunshi-chat/issues)，也欢迎 [Star 收藏](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)。加入升级打怪开源群：Email `247133278@qq.com` · WeChat `loonges` · QQ `247133278`。

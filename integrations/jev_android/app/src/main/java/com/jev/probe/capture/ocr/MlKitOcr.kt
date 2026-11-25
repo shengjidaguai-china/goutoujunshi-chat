@@ -71,16 +71,22 @@ class MlKitOcr : OcrEngine {
         client.process(image)
             .addOnSuccessListener { text ->
                 val lines = ArrayList<OcrLine>()
-                for (block in text.textBlocks) {
+                for ((blockIndex, block) in text.textBlocks.withIndex()) {
                     for (line in block.lines) {
                         val b = line.boundingBox ?: continue
                         val t = line.text.trim()
                         if (t.isEmpty()) continue
+                        val tail = line.elements.lastOrNull()
+                        val tailLeft = tail?.boundingBox?.left
+                        val priorRight = line.elements.getOrNull(line.elements.size - 2)?.boundingBox?.right
+                        val separatedSuffix = if (tailLeft != null && priorRight != null &&
+                            tailLeft - priorRight >= b.height() * 0.8
+                        ) tail.text else null
                         lines.add(OcrLine(t, Rect(
                             ((b.left + ox) / sx).toInt() + wx,
                             ((b.top + oy) / sy).toInt() + wy,
                             ((b.right + ox) / sx).toInt() + wx,
-                            ((b.bottom + oy) / sy).toInt() + wy)))
+                            ((b.bottom + oy) / sy).toInt() + wy), blockIndex, separatedSuffix))
                     }
                 }
                 lines.sortBy { it.bounds.top }

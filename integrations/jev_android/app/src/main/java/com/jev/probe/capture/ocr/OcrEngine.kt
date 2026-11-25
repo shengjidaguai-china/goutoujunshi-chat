@@ -4,7 +4,12 @@ import android.graphics.Bitmap
 import android.graphics.Rect
 
 /** One recognized text line. [bounds] is already in SCREEN coordinates. */
-data class OcrLine(val text: String, val bounds: Rect)
+data class OcrLine(
+    val text: String,
+    val bounds: Rect,
+    val blockIndex: Int? = null,
+    val separatedSuffix: String? = null
+)
 
 /**
  * Text recognition over a screenshot.

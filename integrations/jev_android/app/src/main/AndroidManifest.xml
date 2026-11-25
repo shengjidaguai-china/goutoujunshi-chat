@@ -41,6 +41,19 @@
             android:foregroundServiceType="mediaProjection"
             android:exported="false" />
 
+        <service
+            android:name=".keyboard.GoutouKeyboardService"
+            android:exported="true"
+            android:label="@string/keyboard_name"
+            android:permission="android.permission.BIND_INPUT_METHOD">
+            <intent-filter>
+                <action android:name="android.view.InputMethod" />
+            </intent-filter>
+            <meta-data
+                android:name="android.view.im"
+                android:resource="@xml/goutou_keyboard" />
+        </service>
+
         <activity
             android:name=".KnowledgeActivity"
             android:exported="false" />

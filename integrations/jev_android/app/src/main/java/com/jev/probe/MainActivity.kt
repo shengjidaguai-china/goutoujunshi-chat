@@ -11,12 +11,14 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.jev.probe.core.Prefs
+import com.jev.probe.keyboard.GoutouKeyboardService
 import kotlin.math.roundToInt
 
 /**
@@ -64,10 +66,22 @@ class MainActivity : AppCompatActivity() {
         container.removeAllViews()
 
         container.addView(text("狗头军师 Jev Chat", 24f, ink, bold = true))
-        container.addView(text("在聊天 App 旁读取可见消息，给出判断和候选回复。发送始终由你手动点。",
+        container.addView(text("用系统键盘打字、识图和填入回复草稿。发送始终由你手动点。",
             13f, sub).apply { setPadding(0, dp(6), 0, dp(16)) })
-        container.addView(text("当前 Android 预览版暂不支持微信：无法截取微信聊天画面。QQ、X、飞书等路径仍需实机验证。",
-            13f, red, bold = true).apply { setPadding(0, 0, 0, dp(12)) })
+        container.addView(sectionLabel("系统键盘"))
+        val ime = getSystemService(InputMethodManager::class.java)
+        val keyboardEnabled = ime.enabledInputMethodList.any {
+            it.packageName == packageName && it.serviceName == GoutouKeyboardService::class.java.name
+        }
+        container.addView(permCard("狗头军师键盘", "离线拼音 · 截图识别 · 导入图片识别", keyboardEnabled) {
+            startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
+        })
+        container.addView(actionRow("切换输入法", "启用后选择狗头军师键盘，再到聊天框打字") {
+            ime.showInputMethodPicker()
+        })
+        container.addView(sectionLabel("悬浮助手（可选）"))
+        container.addView(text("部分应用（包括部分微信环境）会限制系统截屏。键盘可导入已有截图。",
+            13f, sub))
 
         val a11y = isA11yEnabled()
         val overlay = Settings.canDrawOverlays(this)
@@ -79,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         container.addView(privacyHint())
 
         // Permission checklist
-        container.addView(sectionLabel("权限设置"))
+        container.addView(sectionLabel("悬浮助手权限"))
         container.addView(permCard("无障碍权限", "读取当前聊天窗口的消息文字", a11y) {
             startActivity(Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS))
         })
