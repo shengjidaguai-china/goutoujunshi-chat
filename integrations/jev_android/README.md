@@ -1,4 +1,4 @@
-# 狗头军师 Jev Chat · Android 源码适配
+# 狗头军师 · Android 源码适配
 
 本目录基于 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis) 的聊天应用采集、ML Kit 中文离线 OCR、悬浮窗、Jev 判断和候选填入链路。已改为独立应用 ID `com.goutoujunshi.chat`，接入狗头军师的自然口吻、事实与推测边界、下一步和停止条件。原文与说话人仍需用户核对；程序检查可见对话里对方最后一条消息中的部分停止联系表述，自己的后续回复不会解除拦截。不可见的历史和未匹配的表述仍需用户核对。程序不自动发送。
 
@@ -8,7 +8,7 @@
 
 ## 2026-10-06：详细分析修复（0.1.8-preview）
 
-最新 APK 为 `0.1.8-preview`（安装版本号 8），请从 [GitHub Releases](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest) 下载。
+最新 APK 为 `0.1.8-preview`（安装版本号 8），请从 [GitHub Releases](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest) 下载。
 
 - 「详细分析」与候选的「为什么这样回」均使用已保存的回复接口，不需要额外填写详情接口。
 - 详情与回复理由支持完整 JSON 及 Markdown JSON 代码块；拒绝缺失字段、错误字段类型和截断内容，不以默认文字替代失败结果。
@@ -41,26 +41,26 @@
 
 ## 2026-10-04：原文核对页与焦点恢复修复
 
-[PR #1](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/pull/1) 已合并到 `main`，修复 Soul 等通用截图路径中，原文核对页被焦点事件替换、确认后循环返回核对页的问题。
+[PR #1](https://github.com/shengjidaguai-china/goutoujunshi-chat/pull/1) 已合并到 `main`，修复 Soul 等通用截图路径中，原文核对页被焦点事件替换、确认后循环返回核对页的问题。
 
 核对期间会忽略无障碍窗口事件；确认后先切换到分析等待状态，每 50 毫秒检查一次原聊天应用，最多等待约一秒。窗口恢复后才继续分析。已切换到其他应用或等待超时会显示提示。这次变更增加了核对期间事件处理、焦点等待和原应用确认的单元测试；不同设备上的窗口行为仍需验证。
 
-[合并后的 main 构建](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/runs/37172091002)已通过 Android 单元测试和 APK 构建。本轮未做 Android 真机验收。
+[合并后的 main 构建](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/runs/37172091002)已通过 Android 单元测试和 APK 构建。本轮未做 Android 真机验收。
 
 ## 获取包含本次修复的 APK
 
 最新 APK 版本为 `0.1.8-preview`（安装版本号 8），对应 Release `v0.1.8-preview`，包含 PR #1、详细分析和截屏配置修复。`v0.1.7-preview` 尚未包含详情与截屏配置的最新修改。
 
-1. 打开 [GitHub Releases 下载页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest)，选择 `v0.1.8-preview` 或更新版本。
-2. 下载 `goutoujunshi-jev-chat-android-debug.apk`，可按同页 `SHA256SUMS.txt` 校验文件。
+1. 打开 [v0.1.8-preview 下载页](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/tag/v0.1.8-preview)。
+2. 下载 [Android 调试 APK](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/download/v0.1.8-preview/goutoujunshi-jev-chat-android-debug.apk)，可按同页 `SHA256SUMS.txt` 校验文件。
 3. 在 Android 11 或更新版本上允许系统安装此来源的应用后安装。
 4. 调试签名不一致时需卸载旧包再安装，卸载会清除应用数据；先记录好需要保留的设置。
 
-开发构建也可从 [Platform preview packages 构建页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/platform-build.yml)获取：选择包含 PR #1 的成功运行，在 Artifacts 中下载 `goutoujunshi-jev-chat-android-debug`，解压安装 `app-debug.apk`。GitHub Actions 附件有保留期限，过期时可从最新源码重新构建。
+开发构建也可从 [Platform preview packages 构建页](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/platform-build.yml)获取。在成功运行的 Artifacts 中下载 `goutoujunshi-chat-android-debug`，解压安装 `app-debug.apk`。旧运行的附件可能沿用旧名称。GitHub Actions 附件有保留期限，过期时可从源码重新构建。
 
 ## 安装与配置
 
-从[最新 Release](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest)下载 `goutoujunshi-jev-chat-android-debug.apk`，在 Android 11 或更新版本上允许系统安装此来源的应用后安装。旧版调试 APK 与新版可能由不同的临时调试证书签名；如提示签名不一致，需卸载旧包再安装，本机应用数据会随卸载清除，先记录好需要保留的设置。打开应用，配置判断和回复接口，按提示授予无障碍、悬浮窗权限，再主动开启助手。应用只生成草稿，由你决定是否发送。请勿使用该版本尝试读取微信聊天。
+从[最新 Release](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest)的 Assets 下载 Android 调试 APK，在 Android 11 或更新版本上允许系统安装此来源的应用后安装。旧版调试 APK 与新版可能由不同的临时调试证书签名；如提示签名不一致，需卸载旧包再安装，本机应用数据会随卸载清除，先记录好需要保留的设置。打开应用，配置判断和回复接口，按提示授予无障碍、悬浮窗权限，再主动开启助手。应用只生成草稿，由你决定是否发送。请勿使用该版本尝试读取微信聊天。
 
 「策略判断」集中配置判断来源和接口：选择 Jev 时，显示 OpenRouter／TypeSafe／自定义渠道以及地址、模型和密钥；选择「DeepSeek 官方」时，显示其官方地址、模型和密钥。页面只显示当前来源的配置，切换来源会保留已填写内容，原有保存设置继续适用。「测试策略判断」测试当前选中的来源。
 

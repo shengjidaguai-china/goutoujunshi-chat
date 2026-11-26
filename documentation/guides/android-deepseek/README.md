@@ -24,9 +24,9 @@ QQ、X、飞书已有专门的采集适配。**Soul 使用通用的手动截屏�
 
 打开项目的 Releases 下载页面：
 
-`https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/releases/latest`
+`https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest`
 
-找到 `goutoujunshi-jev-chat-android-debug.apk`，下载并安装。系统如果提示允许浏览器安装此来源的应用，按手机提示操作。这是预览调试包；如果旧包提示签名不一致，卸载前先记下需要保留的配置，卸载会清掉应用本地数据。
+在 Assets 里找到安卓调试 APK，下载并安装。系统如果提示允许浏览器安装此来源的应用，按手机提示操作。这是预览调试包；如果旧包提示签名不一致，卸载前先记下需要保留的配置，卸载会清掉应用本地数据。
 
 安装后打开狗头军师，首页会列出需要开启的权限。
 
@@ -230,7 +230,7 @@ v0.1.8-preview如果选择了「系统截屏」，此时会出现 Android 的授
 
 项目地址：
 
-`https://github.com/shengjidaguai-china/goutoujunshi-jev-chat`
+`https://github.com/shengjidaguai-china/goutoujunshi-chat`
 
 DeepSeek 官方图像理解说明（本文于 2026 年 10 月 6 日核对）：
 
