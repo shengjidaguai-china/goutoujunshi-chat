@@ -2,7 +2,7 @@
 
 <p align="center">简体中文 · <a href="./README_EN.md">English</a></p>
 
-<h1 align="center">狗头军师 Jev Chat</h1>
+<h1 align="center">狗头军师 Chat</h1>
 
 <p align="center"><strong>聊天卡住时，帮你看清对话、理清下一步，写出更像自己的回复。</strong></p>
 
@@ -45,9 +45,9 @@
 
 | 平台 | 获取与安装 | 当前支持与限制 |
 | --- | --- | --- |
-| **macOS** | [源码预览 ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-mac.zip) · [使用说明](integrations/jev_mac/README.md) | 微信读屏与草稿填入；需要 Python 3.12、uv，暂无签名 `.app`。解压后依次运行 `安装依赖.command`、`离线演示.command`、`启动.command`。 |
-| **Windows** | [预览 ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-windows-preview.zip) · [使用说明](integrations/jev_windows/README.md) | Windows 10 1903+ / 11，微信 4.x；完整解压后运行 `.exe`。**QQNT 9.x 支持需使用新版源码或下方 Actions 构建**。 |
-| **Android** | [调试 APK](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-android-debug.apk) · [图文教程](documentation/guides/android-deepseek/README.md) · [键盘源码与安装](integrations/jev_android/README.md#android-系统键盘019-keyboard-preview) | Android 11+；Soul 等应用可走手动截图流程，需按设备验证。**暂不支持微信**。 |
+| **macOS** | [源码预览 ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/download/v0.1.8-preview/goutoujunshi-jev-chat-mac.zip) · [使用说明](integrations/jev_mac/README.md) | 微信读屏与草稿填入；需要 Python 3.12、uv，暂无签名 `.app`。解压后依次运行 `安装依赖.command`、`离线演示.command`、`启动.command`。 |
+| **Windows** | [预览 ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/download/v0.1.8-preview/goutoujunshi-jev-chat-windows-preview.zip) · [使用说明](integrations/jev_windows/README.md) | Windows 10 1903+ / 11，微信 4.x；完整解压后运行 `.exe`。**QQNT 9.x 支持需使用新版源码或下方 Actions 构建**。 |
+| **Android** | [调试 APK](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/download/v0.1.8-preview/goutoujunshi-jev-chat-android-debug.apk) · [图文教程](documentation/guides/android-deepseek/README.md) · [键盘源码与安装](integrations/jev_android/README.md#android-系统键盘019-keyboard-preview) | Android 11+；Soul 等应用可走手动截图流程，需按设备验证。**暂不支持微信**。 |
 | **iOS** | [中文安装说明](integrations/jev_ios/README.md) · [English guide](integrations/jev_ios/README_EN.md) | iOS 16+；需在 Mac 上用 Xcode 编译、签名。支持本地拼音打字、截图识别与回复填入；暂无公开 IPA、TestFlight 或 App Store 下载。 |
 
 Windows QQ 仅适配 QQNT 主面板内嵌单聊，以浅色皮肤、100% 缩放为基准；群聊与独立聊天窗口暂不支持。贡献者报告已在 Windows 10 上验证识别与填入。请从 [Actions 最新成功构建](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/platform-build.yml)下载对应 Windows Artifacts，或按使用说明运行源码；Release ZIP 不随源码更新自动替换。

@@ -1,4 +1,4 @@
-# 狗头军师 Jev Chat · Windows 源码适配
+# 狗头军师 · Windows 源码适配
 
 本目录基于 [jev-chat-windows](https://github.com/jev-chat/jev-chat-windows) 的窗口采集、RapidOCR、悬浮窗和草稿填入链路。接入狗头军师的证据边界与自然口吻约束：先核对识别原文及说话人，再做策略判断、生成并排序候选；悬浮窗显示可能意图、模型估计的判断把握、已知事实、仍未知、下一步和停止条件。对方明确要求停止联系时，这轮不生成候选。**目标聊天应用可在设置页切换：微信（默认）或 QQ（QQNT 主面板内嵌形态）。**
 
@@ -17,7 +17,7 @@ py -3.11 -m venv .venv
 
 QQ 适配说明：按 QQNT 主面板标定（浅色皮肤、100% 显示缩放、默认列表宽度）；**只保留单聊**（切到群聊会提示跳过、切回好友自动恢复）；深色主题尽力兼容，独立聊天窗口与明显不合常规的窗口布局尚未覆盖。切换目标应用后采集会自动重启；QQ 或微信没打开时先打开主窗口再开启采集。
 
-密钥写入当前 Windows 用户的 `GOUTOU_JEV_API_KEY`、`GOUTOU_DEEPSEEK_STRATEGY_KEY`、`GOUTOU_LLM_API_KEY` 和 `GOUTOU_OCR_API_KEY` 环境变量（按实际选择填写）；识图来源与回复来源相同时可以复用回复 Key。不会读取原版 Jev 安装时保存的 Key。其他设置写在本目录的 `config.json`，已被 Git 忽略。`build.bat` 可在 Windows 上生成可执行目录和 `dist/goutoujunshi-jev-chat-windows-preview.zip`；ZIP 解压后保持整个目录完整，从其中运行 `.exe`。数据使用见仓库根目录 [说明](../../PRIVACY.md)。
+密钥写入当前 Windows 用户的 `GOUTOU_JEV_API_KEY`、`GOUTOU_DEEPSEEK_STRATEGY_KEY`、`GOUTOU_LLM_API_KEY` 和 `GOUTOU_OCR_API_KEY` 环境变量（按实际选择填写）；识图来源与回复来源相同时可以复用回复 Key。不会读取原版 Jev 安装时保存的 Key。其他设置写在本目录的 `config.json`，已被 Git 忽略。`build.bat` 可在 Windows 上生成可执行目录和 `dist/goutoujunshi-chat-windows-preview.zip`；ZIP 解压后保持整个目录完整，从其中运行 `.exe`。数据使用见仓库根目录 [说明](../../PRIVACY.md)。
 
 源码来源及第三方组件许可见本目录的 [LICENSE](LICENSE) 与 [NOTICE](NOTICE)。特别是 PySide6-Fluent-Widgets 会影响 Windows 发布包的许可条件；发布时须单独核对。
 
@@ -25,4 +25,4 @@ QQ 适配说明：按 QQNT 主面板标定（浅色皮肤、100% 显示缩放、
 
 本轮整合补充云端识图去重接口、QQ 群聊分析与填入拦截、记录时间顺序、微信／QQ 同名会话隔离和累计后确认的回归修复。关系资料按应用分别保存，原有微信资料继续兼容。源码合并不会自动替换 Release ZIP；QQ 支持请使用本轮 Actions 成功构建的 Windows Artifacts 或运行源码。
 
-感谢 [@wstaery](https://github.com/wstaery) 通过 [PR #2](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/pull/2) 贡献 QQNT 适配、采集稳定性改进及测试。
+感谢 [@wstaery](https://github.com/wstaery) 通过 [PR #2](https://github.com/shengjidaguai-china/goutoujunshi-chat/pull/2) 贡献 QQNT 适配、采集稳定性改进及测试。

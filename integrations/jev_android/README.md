@@ -1,4 +1,4 @@
-# 狗头军师 Jev Chat · Android 源码适配
+# 狗头军师 · Android 源码适配
 
 本目录基于 [Jev Android](https://github.com/jev-chat/jev-chat-jarvis) 的聊天应用采集、ML Kit 中文离线 OCR、悬浮窗、Jev 判断和候选填入链路。已改为独立应用 ID `com.goutoujunshi.chat`，接入狗头军师的自然口吻、事实与推测边界、下一步和停止条件。原文与说话人仍需用户核对；程序检查可见对话里对方最后一条消息中的部分停止联系表述，自己的后续回复不会解除拦截。不可见的历史和未匹配的表述仍需用户核对。程序不自动发送。
 
@@ -71,16 +71,16 @@ APK 生成在 `app/build/outputs/apk/debug/app-debug.apk`。签名一致时可�
 
 此前的调试 APK 版本为 `0.1.8-preview`（安装版本号 8），对应 Release `v0.1.8-preview`，包含 PR #1、详细分析和截屏配置修复。`v0.1.7-preview` 尚未包含详情与截屏配置的最新修改。
 
-1. 打开 [GitHub Releases 下载页](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest)，选择 `v0.1.8-preview` 或更新版本。
-2. 下载 `goutoujunshi-jev-chat-android-debug.apk`，可按同页 `SHA256SUMS.txt` 校验文件。
+1. 打开 [v0.1.8-preview 下载页](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/tag/v0.1.8-preview)。
+2. 下载 [Android 调试 APK](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/download/v0.1.8-preview/goutoujunshi-jev-chat-android-debug.apk)，可按同页 `SHA256SUMS.txt` 校验文件。
 3. 在 Android 11 或更新版本上允许系统安装此来源的应用后安装。
 4. 调试签名不一致时需卸载旧包再安装，卸载会清除应用数据；先记录好需要保留的设置。
 
-开发构建也可从 [Platform preview packages 构建页](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/platform-build.yml)获取：选择包含 PR #1 的成功运行，在 Artifacts 中下载 `goutoujunshi-jev-chat-android-debug`，解压安装 `app-debug.apk`。GitHub Actions 附件有保留期限，过期时可从最新源码重新构建。
+开发构建也可从 [Platform preview packages 构建页](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/platform-build.yml)获取。在成功运行的 Artifacts 中下载 `goutoujunshi-chat-android-debug`，解压安装 `app-debug.apk`。旧运行的附件可能沿用旧名称。GitHub Actions 附件有保留期限，过期时可从源码重新构建。
 
 ## 安装与配置
 
-从[最新 Release](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest)下载 `goutoujunshi-jev-chat-android-debug.apk`，在 Android 11 或更新版本上允许系统安装此来源的应用后安装。旧版调试 APK 与新版可能由不同的临时调试证书签名；如提示签名不一致，需卸载旧包再安装，本机应用数据会随卸载清除，先记录好需要保留的设置。打开应用，配置判断和回复接口，按提示授予无障碍、悬浮窗权限，再主动开启助手。应用只生成草稿，由你决定是否发送。请勿使用该版本尝试读取微信聊天。
+从[最新 Release](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest)的 Assets 下载 Android 调试 APK，在 Android 11 或更新版本上允许系统安装此来源的应用后安装。旧版调试 APK 与新版可能由不同的临时调试证书签名；如提示签名不一致，需卸载旧包再安装，本机应用数据会随卸载清除，先记录好需要保留的设置。打开应用，配置判断和回复接口，按提示授予无障碍、悬浮窗权限，再主动开启助手。应用只生成草稿，由你决定是否发送。请勿使用该版本尝试读取微信聊天。
 
 「策略判断」集中配置判断来源和接口：选择 Jev 时，显示 OpenRouter／TypeSafe／自定义渠道以及地址、模型和密钥；选择「DeepSeek 官方」时，显示其官方地址、模型和密钥。页面只显示当前来源的配置，切换来源会保留已填写内容，原有保存设置继续适用。「测试策略判断」测试当前选中的来源。
 

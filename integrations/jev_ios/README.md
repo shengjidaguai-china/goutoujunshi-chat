@@ -6,11 +6,11 @@
 
 **在 iPhone 键盘里打字、读聊天截图、看军师建议，确认后把回复填入草稿。** 主 App 用于配置模型、关系资料和查看 K 线；聊天时用地球键切换到狗头军师键盘，发送由你决定。
 
-如果这个工具对你有用，可以[点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers)，方便以后回来找到它。
+如果这个工具对你有用，可以[点一个 Star](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)，方便以后回来找到它。
 
-[![Stars](https://img.shields.io/github/stars/shengjidaguai-china/goutoujunshi-jev-chat?style=flat)](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers)
-[![iOS](https://img.shields.io/badge/iOS-16%2B-orange)](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/tree/main/integrations/jev_ios)
-[![iOS build](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/ios-build.yml/badge.svg)](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/ios-build.yml)
+[![Stars](https://img.shields.io/github/stars/shengjidaguai-china/goutoujunshi-chat?style=flat)](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)
+[![iOS](https://img.shields.io/badge/iOS-16%2B-orange)](https://github.com/shengjidaguai-china/goutoujunshi-chat/tree/main/integrations/jev_ios)
+[![iOS build](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/ios-build.yml/badge.svg)](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/ios-build.yml)
 [![License](https://img.shields.io/badge/License-MIT-orange)](../../LICENSE)
 
 > **当前安装方式：在 Mac 上用 Xcode 编译、签名，安装到自己的 iPhone。** 暂无公开签名 IPA、TestFlight 或 App Store 下载。GitHub Actions 的 iOS ZIP 是模拟器开发产物，不能直接装到手机。
@@ -38,13 +38,13 @@
 
 ### 第一步：下载并打开工程
 
-在[仓库首页](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat)点 **Code → Download ZIP**，解压后进入 `integrations/jev_ios`，双击 `GoutouJunshi.xcodeproj`。请下载整个仓库，工程会使用仓库中的关系指南和示例。
+在[仓库首页](https://github.com/shengjidaguai-china/goutoujunshi-chat)点 **Code → Download ZIP**，解压后进入 `integrations/jev_ios`，双击 `GoutouJunshi.xcodeproj`。请下载整个仓库，工程会使用仓库中的关系指南和示例。
 
 也可以在 Mac 终端运行：
 
 ```bash
-git clone https://github.com/shengjidaguai-china/goutoujunshi-jev-chat.git
-cd goutoujunshi-jev-chat/integrations/jev_ios
+git clone https://github.com/shengjidaguai-china/goutoujunshi-chat.git
+cd goutoujunshi-chat/integrations/jev_ios
 open GoutouJunshi.xcodeproj
 ```
 
@@ -237,11 +237,11 @@ timestamp,sender,message,event
 
 - 日常打字在本机完成，不调用模型、不记录输入历史。聊天原文在你确认分析后直发所选服务，云端截图先确认上传；没有本项目的中转服务器。
 - Key 存在主 App 与键盘共享的本机钥匙串。最近一轮与截图交接最长 5 分钟，排除备份；到期后下次访问清理，系统不保证后台准点删除。配置页可「清除键盘暂存与等待取用的内容」，也可删除各服务 Key。钥匙串项目卸载后可能保留，需主动删除。详见[隐私说明](../../PRIVACY.md)。
-- 2026-10-12 已通过 **225 项离线检查、模拟器与签名设备编译**，并在个人 iPhone 安装、启动主 App。[首次 GitHub 源码构建](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/runs/38209076299)通过；这些检查不等于每个聊天 App 都完成真机验收。
+- 2026-10-12 已通过 **225 项离线检查、模拟器与签名设备编译**，并在个人 iPhone 安装、启动主 App。[首次 GitHub 源码构建](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/runs/38209076299)通过；这些检查不等于每个聊天 App 都完成真机验收。
 - 编译命令、实验捕获限制和历史记录移至[开发与验证](docs/DEVELOPMENT.md)。
 
 ## 开源与致谢
 
 项目原创代码采用根目录 [MIT License](../../LICENSE)。内容参考了jev-chat，这里非常感谢，保留其 [LICENSE](vendor/LICENSE)、[NOTICE](vendor/NOTICE) 与[来源版本](vendor/UPSTREAM.json)。本地拼音词库来自 [Rime 袖珍简化字拼音](https://github.com/rime/rime-pinyin-simp)，保留 [Apache-2.0 许可证](vendor/pinyin-simp/LICENSE)、[作者说明](vendor/pinyin-simp/AUTHORS)与[固定版本](vendor/pinyin-simp/UPSTREAM.json)。关系指南来自本仓库。项目与 Apple、微信及其他聊天平台无关联。
 
-欢迎[收藏项目](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers)，使用中遇到问题请[提交 Issue](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/issues)，附上 iOS 版本、安装版本与复现步骤。
+欢迎[收藏项目](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)，使用中遇到问题请[提交 Issue](https://github.com/shengjidaguai-china/goutoujunshi-chat/issues)，附上 iOS 版本、安装版本与复现步骤。

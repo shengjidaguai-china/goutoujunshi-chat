@@ -2,7 +2,7 @@
 
 <p align="center"><a href="./README.md">简体中文</a> · English</p>
 
-<h1 align="center">Goutou Junshi Jev Chat</h1>
+<h1 align="center">Goutou Junshi Chat</h1>
 
 <p align="center"><strong>Understand a conversation, decide what to do next, and draft a reply that sounds like you.</strong></p>
 
@@ -45,9 +45,9 @@ All platforms are previews. Compatibility still needs validation on individual d
 
 | Platform | Get started | Support and limitations |
 | --- | --- | --- |
-| **macOS** | [Source preview ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-mac.zip) · [Guide](integrations/jev_mac/README.md) | WeChat capture and draft insertion. Requires Python 3.12 and uv; no signed `.app`. Extract and run `安装依赖.command`, `离线演示.command`, then `启动.command`. |
-| **Windows** | [Preview ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-windows-preview.zip) · [Guide](integrations/jev_windows/README.md) | Windows 10 1903+ / 11 and WeChat 4.x. Extract the entire ZIP before running the `.exe`. **QQNT 9.x requires current source or the Actions build linked below.** |
-| **Android** | [Debug APK](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/latest/download/goutoujunshi-jev-chat-android-debug.apk) · [Illustrated guide](documentation/guides/android-deepseek/README.md) · [Keyboard source and setup](integrations/jev_android/README.md#android-系统键盘019-keyboard-preview) | Android 11+. Apps such as Soul can use manual screenshot capture, subject to device testing. **WeChat is currently unsupported.** |
+| **macOS** | [Source preview ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/download/v0.1.8-preview/goutoujunshi-jev-chat-mac.zip) · [Guide](integrations/jev_mac/README.md) | WeChat capture and draft insertion. Requires Python 3.12 and uv; no signed `.app`. Extract and run `安装依赖.command`, `离线演示.command`, then `启动.command`. |
+| **Windows** | [Preview ZIP](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/download/v0.1.8-preview/goutoujunshi-jev-chat-windows-preview.zip) · [Guide](integrations/jev_windows/README.md) | Windows 10 1903+ / 11 and WeChat 4.x. Extract the entire ZIP before running the `.exe`. **QQNT 9.x requires current source or the Actions build linked below.** |
+| **Android** | [Debug APK](https://github.com/shengjidaguai-china/goutoujunshi-chat/releases/download/v0.1.8-preview/goutoujunshi-jev-chat-android-debug.apk) · [Illustrated guide](documentation/guides/android-deepseek/README.md) · [Keyboard source and setup](integrations/jev_android/README.md#android-系统键盘019-keyboard-preview) | Android 11+. Apps such as Soul can use manual screenshot capture, subject to device testing. **WeChat is currently unsupported.** |
 | **iOS** | [Chinese installation guide](integrations/jev_ios/README.md) · [English guide](integrations/jev_ios/README_EN.md) | iOS 16+. Build and sign with Xcode on a Mac. Includes local Pinyin typing, screenshot recognition, and draft insertion. No public IPA, TestFlight, or App Store download. |
 
 Windows QQ support targets embedded one-to-one chats in the QQNT main panel, using a light theme and 100% display scaling as the baseline. Group chats and separate chat windows are unsupported. The contributor reported successful recognition and insertion on Windows 10. Download the Windows Artifacts from the [latest successful Actions build](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/platform-build.yml), or run from source. Source updates do not automatically replace the Release ZIP.

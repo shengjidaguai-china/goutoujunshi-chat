@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
     private fun build() {
         container.removeAllViews()
 
-        container.addView(text("狗头军师 Jev Chat", 24f, ink, bold = true))
+        container.addView(text("狗头军师", 24f, ink, bold = true))
         container.addView(text("用系统键盘打字、识图和填入回复草稿。发送始终由你手动点。",
             13f, sub).apply { setPadding(0, dp(6), 0, dp(16)) })
         container.addView(sectionLabel("系统键盘"))
@@ -260,6 +260,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val PRIVACY_URL = "https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/blob/main/PRIVACY.md"
+        private const val PRIVACY_URL = "https://github.com/shengjidaguai-china/goutoujunshi-chat/blob/main/PRIVACY.md"
     }
 }

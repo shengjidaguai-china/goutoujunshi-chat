@@ -77,7 +77,7 @@ A normal multi-candidate DeepSeek run usually makes six requests: evidence, thre
 ## 当前验证范围 / Current validation scope
 
 - 2026-10-12：225 项离线检查通过（核心 165、打字 33、OCR 27），模拟器与签名设备构建通过，个人 iPhone 安装与主 App 启动完成。该轮未调用真实模型、未发送聊天消息。
-- [GitHub 首次源码构建](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/runs/38209076299)通过离线检查、模拟器和未签名设备编译。[自动构建](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/ios-build.yml)的 ZIP 是模拟器开发产物。
+- [GitHub 首次源码构建](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/runs/38209076299)通过离线检查、模拟器和未签名设备编译。[自动构建](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/ios-build.yml)的 ZIP 是模拟器开发产物。
 - 宿主聊天 App 的键盘恢复、云端图片识别和候选填入需要逐个真机验收；ReplayKit 实验入口尚未完成真机端到端验收。
 
 On October 12, 2026, all 225 offline checks passed (165 core, 33 typing, 27 OCR), simulator and signed-device builds passed, and installation plus companion-app launch succeeded on a personal iPhone. That run made no live model requests or sent chat messages. The linked GitHub source build passed offline checks and both compilation jobs. Its ZIP contains a simulator development app. Keyboard restoration, cloud OCR and draft insertion need validation in each host app; the ReplayKit experiment has not completed device end-to-end acceptance.

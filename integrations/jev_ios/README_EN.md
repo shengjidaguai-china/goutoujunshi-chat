@@ -6,11 +6,11 @@
 
 **Type, recognize chat screenshots and get relationship advice inside an iPhone keyboard, then confirm a reply before inserting it into your draft.** The companion app manages models, relationship profiles and candlesticks. Switch keyboards with the globe button in your chat; you decide when to send.
 
-[Star the project](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers) if it is useful, so you can find it again.
+[Star the project](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers) if it is useful, so you can find it again.
 
-[![Stars](https://img.shields.io/github/stars/shengjidaguai-china/goutoujunshi-jev-chat?style=flat)](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers)
-[![iOS](https://img.shields.io/badge/iOS-16%2B-orange)](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/tree/main/integrations/jev_ios)
-[![iOS build](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/ios-build.yml/badge.svg)](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/workflows/ios-build.yml)
+[![Stars](https://img.shields.io/github/stars/shengjidaguai-china/goutoujunshi-chat?style=flat)](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers)
+[![iOS](https://img.shields.io/badge/iOS-16%2B-orange)](https://github.com/shengjidaguai-china/goutoujunshi-chat/tree/main/integrations/jev_ios)
+[![iOS build](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/ios-build.yml/badge.svg)](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/workflows/ios-build.yml)
 [![License](https://img.shields.io/badge/License-MIT-orange)](../../LICENSE)
 
 > **Installation currently requires a Mac and Xcode to build, sign and install on your own iPhone.** There is no public signed IPA, TestFlight invitation or App Store release. The iOS ZIP from GitHub Actions is a simulator development product and cannot install directly on a phone.
@@ -38,13 +38,13 @@ An ordinary Apple Account can use an Xcode **Personal Team** for personal-device
 
 ### Step 1: Download and open the project
 
-On the [repository page](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat), choose **Code → Download ZIP**, extract it, open `integrations/jev_ios`, and double-click `GoutouJunshi.xcodeproj`. Download the whole repository: the project uses its relationship guidance and examples.
+On the [repository page](https://github.com/shengjidaguai-china/goutoujunshi-chat), choose **Code → Download ZIP**, extract it, open `integrations/jev_ios`, and double-click `GoutouJunshi.xcodeproj`. Download the whole repository: the project uses its relationship guidance and examples.
 
 Alternatively, run on your Mac:
 
 ```bash
-git clone https://github.com/shengjidaguai-china/goutoujunshi-jev-chat.git
-cd goutoujunshi-jev-chat/integrations/jev_ios
+git clone https://github.com/shengjidaguai-china/goutoujunshi-chat.git
+cd goutoujunshi-chat/integrations/jev_ios
 open GoutouJunshi.xcodeproj
 ```
 
@@ -237,11 +237,11 @@ Each “me” message contributes -1 and “other” +1. Daily cumulative-balanc
 
 - Everyday typing is local, calls no model and saves no input history. Reviewed chats are sent directly to the selected provider after analysis confirmation; cloud images require upload approval. There is no project-owned relay server.
 - Keys live in the app/keyboard shared local Keychain. Session and screenshot handoffs last at most five minutes and are excluded from backup; expired data is deleted on next access, not guaranteed at an exact background deadline. Use **清除键盘暂存与等待取用的内容** in settings or delete provider keys. Keychain items may survive uninstall and need explicit deletion. See [privacy details](../../PRIVACY.md).
-- On October 12, 2026, **225 offline checks, simulator and signed-device builds** passed, with installation and companion-app launch on a personal iPhone. The [first GitHub source build](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/actions/runs/38209076299) passed. This does not establish complete device acceptance in every chat app.
+- On October 12, 2026, **225 offline checks, simulator and signed-device builds** passed, with installation and companion-app launch on a personal iPhone. The [first GitHub source build](https://github.com/shengjidaguai-china/goutoujunshi-chat/actions/runs/38209076299) passed. This does not establish complete device acceptance in every chat app.
 - Build commands, experimental capture limits and history are in [Development and validation](docs/DEVELOPMENT.md).
 
 ## Licensing and acknowledgments
 
 Original project code uses the root [MIT License](../../LICENSE). The keyboard/shared-container architecture adapts [Jev iOS](https://github.com/jev-chat/jev-chat-jarvis-ios), retaining its [LICENSE](vendor/LICENSE), [NOTICE](vendor/NOTICE) and [upstream revision](vendor/UPSTREAM.json). The offline dictionary uses [Rime pinyin-simp](https://github.com/rime/rime-pinyin-simp), retaining its [Apache-2.0 license](vendor/pinyin-simp/LICENSE), [authors](vendor/pinyin-simp/AUTHORS) and [pinned revision](vendor/pinyin-simp/UPSTREAM.json). Relationship guidance comes from this repository. The project is not affiliated with Apple, WeChat or other chat platforms.
 
-[Star the project](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/stargazers) to find it later. For problems, [open an Issue](https://github.com/shengjidaguai-china/goutoujunshi-jev-chat/issues) with your iOS version, installed build and reproduction steps.
+[Star the project](https://github.com/shengjidaguai-china/goutoujunshi-chat/stargazers) to find it later. For problems, [open an Issue](https://github.com/shengjidaguai-china/goutoujunshi-chat/issues) with your iOS version, installed build and reproduction steps.
